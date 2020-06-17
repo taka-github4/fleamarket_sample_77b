@@ -11,7 +11,7 @@
 |prefectures|integer|null: false|
 |days|integer|null: false|
 |brand|integer|null: false|
-|category_id|integer|null: false, foreign_key: true|
+|category_id|references|null: false, foreign_key: true|
 |user_id|references|null: false, foreign_key: true|
 ### Asociation
 - has_many :comments
@@ -76,6 +76,6 @@
 |Column|Type|Options|
 |------|----|-------|
 |image|string|null: false|
-|item_id|integer||
+|item_id|references|null: false, foreign_key: true|
 ### Asociation
 - belongs_to: item
