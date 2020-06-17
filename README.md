@@ -8,9 +8,9 @@
 |size_id|integer||
 |description|text|null: false|
 |item_condition_id|integer|null: false|
-|負担_id|integer|null: false|
-|都道府県_id|integer|null: false|
-|日数_id|integer|null: false|
+|burden_id|integer|null: false|
+|pprefectures_id|integer|null: false|
+|days_id|integer|null: false|
 |brand|integer|null: false|
 ### Asociation
 - has_many :comments
@@ -42,8 +42,8 @@
 |zip_code|integer|null:f alse|
 |prefecture|integer|null:false|
 |city|string|null: false|
-|番地|string|null: false|
-|マンション|string||
+|house_number|string|null: false|
+|apartment|string||
 |phone_number|integer||
 |use_id|reference|null: false, foureign_key: true|
 ### Asociation
