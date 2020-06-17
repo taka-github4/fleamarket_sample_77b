@@ -18,6 +18,7 @@
 - belongs_to :user
 - has_many :photos
 - belongs_to :category
+- has_many :favorites
 
 ## categoryテーブル
 |Column|Type|Options|
@@ -44,6 +45,8 @@
 - has_many :items
 - has_many :comments
 - has_one :address
+- has_one :credit_cards
+- has_many :favorites
 
 ## addressテーブル
 
@@ -78,4 +81,24 @@
 |image|string|null: false|
 |item_id|references|null: false, foreign_key: true|
 ### Asociation
+- belongs_to: item
+
+## credit_cardsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|credit_number|integer|null: false, unique: true|
+|deadline_year|integer|null: false|
+|deadline_month|integer|null: false|
+|security_code|integer|null: false|
+|user_id|references|null: false, foreign_key: true|
+### Asociation
+- belongs_to :user
+
+## favoritesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|user_id|references|null: false|
+|item_id|refarences|null: false|
+### Asociation
+- belongs_to: user
 - belongs_to: item
