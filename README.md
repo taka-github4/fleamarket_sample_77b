@@ -44,7 +44,7 @@
 ### Asociation
 - has_many :items
 - has_many :comments
-- has_one :addres
+- has_one :address
 - has_one :credit_card
 - has_many :favorites
 
