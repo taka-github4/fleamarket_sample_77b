@@ -11,7 +11,8 @@
 |prefectures|integer|null: false|
 |days|integer|null: false|
 |brand|integer|null: false|
-|category_id|integer|null: false|
+|category_id|integer|null: false, foreign_key: true|
+|user_id|references|null: false, foreign_key: true|
 ### Asociation
 - has_many :comments
 - belongs_to :user
@@ -42,7 +43,7 @@
 ### Asociation
 - has_many :items
 - has_many :comments
-- has_one :addres
+- has_one :address
 
 ## addressテーブル
 
@@ -57,7 +58,7 @@
 |city|string|null: false|
 |house_number|string|null: false|
 |apartment|string||
-|user_id|reference|null: false, foureign_key: true|
+|user_id|references|null: false, foreign_key: true|
 ### Asociation
 - belongs_to :user
 
@@ -65,8 +66,8 @@
 |Column|Type|Options|
 |------|----|-------|
 |content|text|null: false|
-|user_id|reference|null: false, foreign_key: true|
-|item_id|reference|null: false, foregin_key: true|
+|user_id|references|null: false, foreign_key: true|
+|item_id|references|null: false, foreign_key: true|
 ### Asociation
 - belongs_to: user
 - belongs_to: item
