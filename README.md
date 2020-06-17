@@ -30,6 +30,7 @@
 - has_many :comments
 - has_many :photos
 - has_one :addres
+
 ## addressテーブル
 
 |Column|Type|Options|
@@ -56,7 +57,8 @@
 |user_id|reference|null: false, foreign_key: true|
 |item_id|reference|null: false, foregin_key: true|
 ### Asociation
-- 
+- belongs_to: user
+- belongs_to: item
 
 ## photosテーブル
 |Column|Type|Options|
@@ -64,4 +66,4 @@
 |image|string|null: false|
 |item_id|integer||
 ### Asociation
-- 
+- belongs_to: item
