@@ -9,7 +9,7 @@
 |description|text|null: false|
 |item_condition_id|integer|null: false|
 |burden_id|integer|null: false|
-|pprefectures_id|integer|null: false|
+|prefectures_id|integer|null: false|
 |days_id|integer|null: false|
 |brand|integer|null: false|
 ### Asociation
