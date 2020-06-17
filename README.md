@@ -4,27 +4,40 @@
 |------|----|-------|
 |name|string|null: false|
 |price|integer|null: false|
-|category_id|integer|null: false|
-|size_id|integer||
+|size|integer||
 |description|text|null: false|
-|item_condition_id|integer|null: false|
-|burden_id|integer|null: false|
-|prefectures_id|integer|null: false|
-|days_id|integer|null: false|
+|item_condition|integer|null: false|
+|burden|integer|null: false|
+|prefectures|integer|null: false|
+|days|integer|null: false|
 |brand|integer|null: false|
+|category_id|integer|null: false|
 ### Asociation
 - has_many :comments
 - belongs_to :user
 - has_many :photos
+- belongs_to :category
 
-## usersテーブル
-
+## categoryテーブル
 |Column|Type|Options|
 |------|----|-------|
+|name|string|null: false|
+## Asociation
+- has_many :items
+
+
+## usersテーブル
+|Column|Type|Options|
+|------|----|-------|
+|first_name|string|null: false|
+|last_name|string|null: false|
+|first_name_kana|string|null: false|
+|last_name_kana|string|null: false|
 |nickname|string|null: false｜
 |email|string|null: false, unique: true|
 |password|string|null: false|
 |password_confirmation|string|null: false|
+|birthday|date|null: false|
 ### Asociation
 - has_many :items
 - has_many :comments
@@ -35,25 +48,23 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|destination_first_name|string|null: false|
-|destination_last_name|string|null: false|
-|destination_first_name_kana|string|null: false|
-|destination_last_name_kana|string|null: false|
+|first_name|string|null: false|
+|last_name|string|null: false|
+|first_name_kana|string|null: false|
+|last_name_kana|string|null: false|
 |zip_code|integer|null:f alse|
 |prefecture|integer|null:false|
 |city|string|null: false|
 |house_number|string|null: false|
 |apartment|string||
-|phone_number|integer||
-|use_id|reference|null: false, foureign_key: true|
+|user_id|reference|null: false, foureign_key: true|
 ### Asociation
 - belongs_to :user
 
 ## commentsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|comment|text|null: false|
-|created_at|timestamp|null: false|
+|content|text|null: false|
 |user_id|reference|null: false, foreign_key: true|
 |item_id|reference|null: false, foregin_key: true|
 ### Asociation
