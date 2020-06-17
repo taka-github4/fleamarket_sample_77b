@@ -22,9 +22,10 @@
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
+|ancestry|string||
 ## Asociation
 - has_many :items
-
+- has_ancestry
 
 ## usersテーブル
 |Column|Type|Options|
@@ -41,7 +42,6 @@
 ### Asociation
 - has_many :items
 - has_many :comments
-- has_many :photos
 - has_one :addres
 
 ## addressテーブル
