@@ -70,4 +70,5 @@ group :production do
   gem 'unicorn'
 end
 
- gem 'haml-rails'
+gem 'haml-rails'
+gem 'font-awesome-sass'
