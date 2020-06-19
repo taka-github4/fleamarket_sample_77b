@@ -1,0 +1,23 @@
+.head
+  .head__in
+    .head__in__main
+      .head__in__main__icon
+        =image_tag '/assets/logo/logo.png',alt:"logo",class:"frm"
+      .head__in__main__box
+        .head__in__main__box__form
+          %input{class:'frm-in',placeholder:'キーワードから探す'}/
+          .head__in__main__box__form__search
+            =image_tag '/assets/icon/icon-search 1.png',alt:"icon-search",class:"search-in"
+    .head__in__list
+      .head__in__list__text
+        .head__in__list__text__category
+          .head__in__list__text__category__category2
+            カテゴリー
+        .head__in__list__text__brand
+          .head__in__list__text__brand__brand2
+            ブランド
+      .head__in__list__right
+        .head__in__list__right__log
+          = link_to "ログイン"
+        .head__in__list__right__sinki
+          = link_to"新規会員登録"
