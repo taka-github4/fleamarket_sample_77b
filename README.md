@@ -36,7 +36,7 @@
 |last_name|string|null: false|
 |first_name_kana|string|null: false|
 |last_name_kana|string|null: false|
-|nickname|string|null: false｜
+|nickname|string|null: false|
 |email|string|null: false, unique: true|
 |password|string|null: false|
 |password_confirmation|string|null: false|
@@ -48,7 +48,7 @@
 - has_one :credit_card, dependent: :destroy
 - has_many :favorites, dependent: :destroy
 
-## addressテーブル
+## addressesテーブル
 
 |Column|Type|Options|
 |------|----|-------|
@@ -56,7 +56,7 @@
 |last_name|string|null: false|
 |first_name_kana|string|null: false|
 |last_name_kana|string|null: false|
-|zip_code|integer|null:f alse|
+|zip_code|integer|null:false|
 |prefecture|integer|null:false|
 |city|string|null: false|
 |house_number|string|null: false|

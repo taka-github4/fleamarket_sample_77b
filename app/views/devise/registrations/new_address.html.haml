@@ -1,0 +1,41 @@
+%h2 住所情報登録
+= form_for @address do |f|
+  .field
+    = f.label :last_name
+    %br/
+    = f.text_field :last_name, autofocus: true
+  .field
+    = f.label :first_name
+    %br/
+    = f.text_field :first_name
+  .field
+    = f.label :last_name_kana
+    %br/
+    = f.text_field :last_name_kana
+  .field
+    = f.label :first_name_kana
+    %br/
+    = f.text_field :first_name_kana
+  .field
+    = f.label :zip_code
+    %br/
+    = f.text_field :zip_code
+  .field
+    = f.label :prefecture
+    %br/
+    = f.select :prefecture, Address.prefectures.keys.map {|k| [k, k]}, {}
+    .field
+    = f.label :city
+    %br/
+    = f.text_field :city
+  .field
+    = f.label :house_number
+    %br/
+    = f.text_field :house_number
+  .field
+    = f.label :apartment
+    %br/
+    = f.text_field :apartment
+  .actions
+    = f.submit "Sign up"
+= render "devise/shared/links"
