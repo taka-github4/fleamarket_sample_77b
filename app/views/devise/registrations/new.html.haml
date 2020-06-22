@@ -1,6 +1,6 @@
-%header.single-header
+%header.singleHeader
   .memberHeader
-    .menberHeader_logo
+    .menberHeader-logo
       =link_to root_url do
         =image_tag 'logo/logo.png',alt:"furima-logo",size:"185x49"
     .memberStatus
@@ -18,8 +18,8 @@
           .memberStatus__listItem.memberStatus__listItem--last
             %p 完了
             %p.memberStatus__listItem--point ●
-.menberform
-  .menberform__content
+.menberForm
+  .menberForm__content
     %h2 会員情報入力
     = form_for(@user, url: user_registration_path) do |f|
       = render "devise/shared/error_messages", resource: @user
@@ -72,57 +72,3 @@
         %p.field__info-text ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
       .actions
         = f.submit class: 'btn-green', value: "次へ進む"
-
-.foot
-  .foot__top
-    %li プライバシーポリシー
-    %li フリマ利用規約
-    %li 特定商品に関する規約
-  .foot__mid
-    =image_tag '/assets/logo/logo.png',alt:"logo",class:"botic"
-  .foot__bot
-    ©️furima,inc
--# %h2 ユーザー情報登録
--# = form_for(@user, url: user_registration_path) do |f|
--#   .field
--#     = f.label :last_name
--#     %br/
--#     = f.text_field :last_name, autofocus: true
--#   .field
--#     = f.label :first_name
--#     %br/
--#     = f.text_field :first_name
--#   .field
--#     = f.label :last_name_kana
--#     %br/
--#     = f.text_field :last_name_kana
--#   .field
--#     = f.label :first_name_kana
--#     %br/
--#     = f.text_field :first_name_kana
--#   .field
--#     = f.label :nickname
--#     %br/
--#     = f.text_field :nickname
--#   .field
--#     = f.label :birthday
--#     %br/
--#     != sprintf(f.date_select(:birthday,use_month_numbers:true, start_year:1930, end_year:2002, prompt:"--",date_separator:'%s'),'／','／')
--#   .field
--#     = f.label :email
--#     %br/
--#     = f.email_field :email, autocomplete: "email"
--#   .field
--#     = f.label :password
--#     - if @minimum_password_length
--#       %em
--#         (#{@minimum_password_length} characters minimum)
--#     %br/
--#     = f.password_field :password, autocomplete: "new-password"
--#   .field
--#     = f.label :password_confirmation
--#     %br/
--#     = f.password_field :password_confirmation, autocomplete: "new-password"
--#   .actions
--#     = f.submit "Next"
--# = render "devise/shared/links"

@@ -7,8 +7,13 @@
   text-align: center;
 }
 body{
-  // position: relative;
   background-color: #f5f5f5;
+}
+.loginHeader{
+  display: flex;
+  justify-content: center;
+  height: 150px;
+  padding-top: 50px;
 }
 .memberHeader{
   display: flex;
@@ -53,8 +58,7 @@ body{
     }
   }
 }
-.menberform{
-  
+.menberForm{
   &__content{
     background-color: white;
     margin: 0 auto;
@@ -165,6 +169,10 @@ body{
       }
       #address_prefecture{
         height: 50px;
+      }
+      #user_remember_me{
+        width: 30px;
+        height: 30px;
       }
       .form-info-text{
         font-weight: normal;
@@ -314,9 +322,55 @@ body{
         margin-bottom: 15px;
       }
     }
+    .actions-login{
+      max-width: 343px;
+      margin: 0 120px 0 120px;
+      text-align: center;
+      display: block;
+      width: 100%;
+      .btn-green-login{
+        width: 343px;
+        padding-top: 16px;
+        padding-bottom: 16px;
+        font-size: 14px;
+        color: white;
+        cursor: pointer;
+        background: #3ccace;
+        border: 1px solid #3ccace;
+        border-radius: 5px;
+        line-height: 20px;
+      }
+    }
   }
 }
-.foot{
+.memberCreate{
+  
+  &__content{
+    margin: 0 auto 30px;
+    width: 700px;
+    background-color: white;
+    padding: 40px;
+    text-align: center;
+    h2{
+      font-size: 22px;
+      font-weight: bold;
+    }
+  }
+  &__message{
+    margin-top: 60px;
+  }
+  &__btn{
+    margin: 50px auto 40px;
+    width:400px;
+    height:60px;
+    color: #fff;
+    background-color: #3ccace;
+    border-radius: 4px;
+    line-height: 60px;
+  }
+}
+.devise-footer{
+  height: 100vh;
   width:456px;
   margin:auto;
   height:200px;
@@ -343,31 +397,5 @@ body{
   &__bot{
     font-size:12px;
     text-align:center;
-  }
-}
-.memberCreate{
-  height:calc(100vh - 328px);
-  &__content{
-    margin: 0 auto;
-    width: 700px;
-    background-color: white;
-    padding: 40px;
-    text-align: center;
-    h2{
-      font-size: 22px;
-      font-weight: bold;
-    }
-  }
-  &__message{
-    margin-top: 60px;
-  }
-  &__btn{
-    margin: 40px auto;
-    width:400px;
-    height:60px;
-    color: #fff;
-    background-color: #3ccace;
-    border-radius: 4px;
-    line-height: 60px;
   }
 }
