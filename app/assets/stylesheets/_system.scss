@@ -5,3 +5,17 @@
   box-sizing: border-box;
   font-family: "Source Sans Pro", Helvetica, Arial, "游ゴシック体", "YuGothic", "メイリオ", "Meiryo", sans-serif;
 }
+
+.notification {
+  .notice {
+    background-color: #3CCACE;
+    color: #FFFFFF;
+    text-align: center;
+  }
+
+  .alert {
+    background-color: #F35500;
+    color: #FFFFFF;
+    text-align: center;
+  }
+}
