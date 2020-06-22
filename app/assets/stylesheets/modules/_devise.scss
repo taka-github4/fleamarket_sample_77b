@@ -1,0 +1,373 @@
+// Place all the styles related to the items controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+* {
+  box-sizing: border-box;
+  font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', sans-serif;
+  text-align: center;
+}
+body{
+  // position: relative;
+  background-color: #f5f5f5;
+}
+.memberHeader{
+  display: flex;
+  justify-content: center;
+  height: 150px;
+  padding-top: 50px;
+  .memberStatus{
+    display: flex;
+    justify-content: center;
+    width: 280px;
+    margin-left: 40px;
+    position: relative;
+    color:lightgray;
+    &__line{
+    border-bottom: 2px solid lightgray;
+    position: absolute;
+    width: 160px;
+    top: 32px;
+    left: 70px;
+    z-index: 1;
+    }
+    &__list{
+    display: flex;
+    justify-content: center;
+    z-index: 2;
+    }
+    &__listItem{
+      font-size: 12px;
+      font-weight: 600;
+      &--next{
+        margin-left: 20px;
+      }
+      &--last{
+        margin-left: 34px;
+      }
+      &--point{
+        font-size:24px;
+      }
+      &--active{
+        color: red;
+      }
+    }
+  }
+}
+.menberform{
+  
+  &__content{
+    background-color: white;
+    margin: 0 auto;
+    width: 700px;
+  
+    p{
+      display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    }
+    h2{
+      text-align: center;
+      font-size: 22px;
+      padding: 32px;
+      font-weight: bold;
+      border-bottom: 1px solid #f5f5f5;
+    }
+    .required-text{
+      color: white;
+      background-color:#3ccace;
+      margin: 0 0 20px;
+      padding: 2px 4px;
+      border-radius: 2px;
+      font-size: 12px;
+      vertical-align: top;
+      font-weight: normal;
+    }
+    .new_user{
+      padding: 20px 40px 64px;
+    }
+      
+    .field{
+      height: 70px;
+      width: 500px;
+      margin: 30px auto;
+      text-align: left;
+      font-weight: bold;
+      padding-left: 60px;
+      font-size: 13px;
+      #user_nickname{
+        height: 50px;
+        width: 350px;
+        text-align: left;
+        font-weight: normal;
+        margin-top: 5px;
+      }
+      #user_email{
+        height: 50px;
+        width:350px;
+        text-align: left;
+        font-weight: normal;
+        margin-top: 5px;
+      }
+      #user_password_confirmation{
+        height: 50px;
+        width:350px;
+        text-align: left;
+        font-weight: normal;
+        margin-top: 5px;
+      }
+      #user_birthday_1i{
+        height: 50px;
+        width: 70px;
+        font-weight: normal;
+        margin-top: 5px;
+      }
+      #user_birthday_2i{
+        height: 50px;
+        width: 70px;
+        font-weight: normal;
+        margin-top: 5px;
+      }
+      #user_birthday_3i{
+        height: 50px;
+        width: 70px;
+        font-weight: normal;
+        margin-top: 5px;
+      }
+      #address_zip_code{
+        height: 50px;
+        width:174px;
+        text-align: left;
+        font-weight: normal;
+        margin-top: 5px;
+      }
+      #address_city{
+        height: 50px;
+        width:350px;
+        text-align: left;
+        font-weight: normal;
+        margin-top: 5px;
+      }
+      #address_house_number{
+        height: 50px;
+        width:350px;
+        text-align: left;
+        font-weight: normal;
+        margin-top: 5px;
+      }
+      #address_apartment{
+        height: 50px;
+        width:350px;
+        text-align: left;
+        font-weight: normal;
+        margin-top: 5px;
+      }
+      #address_prefecture{
+        height: 50px;
+      }
+      .form-info-text{
+        font-weight: normal;
+        text-align: left;
+        color: #888;
+        margin-top: 8px;
+      }
+      
+      &__info-text{
+        font-weight: normal;
+        font-size: 14px;
+        padding-right: 115px;
+      }
+    }
+    .field-password{
+      height: 70px;
+      width: 500px;
+      margin: 30px auto;
+      text-align: left;
+      font-weight: bold;
+      padding-left: 60px;
+      font-size: 13px;
+      #user_password{
+        height: 50px;
+        width:350px;
+        text-align: left;
+        font-weight: normal;
+        margin-top: 5px;
+      }
+      .form-info-text{
+        font-weight: normal;
+        text-align: left;
+        color: #888;
+        margin-top: 8px;
+      }
+    }
+    .form-text{
+      width: 350px;
+      margin: 0 150px 0 120px;
+      padding-top: 20px;
+      &__title{
+        font-weight: bold;
+        text-align: left;
+      }
+      &__content{
+        font-weight: normal;
+        text-align: left;
+        font-size: 13px;
+      }
+    }
+    .field-half{
+      height: 70px;
+      width: 400px;
+      margin: 30px auto;
+      text-align: left;
+      font-weight: bold;
+      padding-left: 10px;
+      font-size: 13px;
+      #user_first_name{
+        height: 50px;
+        width: 174px;
+        font-weight: normal;
+        margin-top: 5px;
+      }
+      #user_last_name{
+        height: 50px;
+        width: 174px;
+        font-weight: normal;
+        margin-top: 5px;
+      }
+      #user_first_name_kana{
+        height: 50px;
+        width: 174px;
+        font-weight: normal;
+        margin-top: 5px;
+      }
+      #user_last_name_kana{
+        height: 50px;
+        width: 174px;
+        font-weight: normal;
+        margin-top: 5px;
+      }
+      #address_last_name{
+        height: 50px;
+        width: 174px;
+        font-weight: normal;
+        margin-top: 5px;
+      }
+      #address_first_name{
+        height: 50px;
+        width: 174px;
+        font-weight: normal;
+        margin-top: 5px;
+      }
+      #address_last_name_kana{
+        height: 50px;
+        width: 174px;
+        font-weight: normal;
+        margin-top: 5px;
+      }
+      #address_first_name_kana{
+        height: 50px;
+        width: 174px;
+        font-weight: normal;
+        margin-top: 5px;
+      }
+    }
+    .actions{
+      max-width: 343px;
+      margin: 60px 120px 0 120px;
+      text-align: center;
+      padding-top: 32px;
+      display: block;
+      width: 100%;
+      
+      .btn-green{
+        width: 343px;
+        padding-top: 16px;
+        padding-bottom: 16px;
+        font-size: 14px;
+        color: white;
+        cursor: pointer;
+        background: #3ccace;
+        border: 1px solid #3ccace;
+        border-radius: 5px;
+        line-height: 20px;
+      }
+    }
+    .actions-next{
+      max-width: 343px;
+      margin: 60px 120px 0 160px;
+      text-align: center;
+      padding-bottom: 20px;
+      display: block;
+      width: 100%;
+      .btn-green-next{
+        width: 343px;
+        padding-top: 16px;
+        padding-bottom: 20px;
+        font-size: 14px;
+        color: white;
+        cursor: pointer;
+        background: #3ccace;
+        border: 1px solid #3ccace;
+        border-radius: 5px;
+        line-height: 20px;
+        margin-bottom: 15px;
+      }
+    }
+  }
+}
+.foot{
+  width:456px;
+  margin:auto;
+  height:200px;
+  text-align:center;
+  padding-top:35px;
+  &__top{
+    display:flex;
+    list-style:none;
+    text-align:center;
+    li{
+      text-align:center;
+      font-size:12px;
+      margin-left:32px;
+    }
+  }
+  &__mid{
+    padding-top:50px;
+    .botic{
+      height:50px;
+      width:130px;
+      color:gray;
+    }
+  }
+  &__bot{
+    font-size:12px;
+    text-align:center;
+  }
+}
+.memberCreate{
+  height:calc(100vh - 328px);
+  &__content{
+    margin: 0 auto;
+    width: 700px;
+    background-color: white;
+    padding: 40px;
+    text-align: center;
+    h2{
+      font-size: 22px;
+      font-weight: bold;
+    }
+  }
+  &__message{
+    margin-top: 60px;
+  }
+  &__btn{
+    margin: 40px auto;
+    width:400px;
+    height:60px;
+    color: #fff;
+    background-color: #3ccace;
+    border-radius: 4px;
+    line-height: 60px;
+  }
+}

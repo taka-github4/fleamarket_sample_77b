@@ -1,41 +1,113 @@
-%h2 住所情報登録
-= form_for @address do |f|
-  .field
-    = f.label :last_name
-    %br/
-    = f.text_field :last_name, autofocus: true
-  .field
-    = f.label :first_name
-    %br/
-    = f.text_field :first_name
-  .field
-    = f.label :last_name_kana
-    %br/
-    = f.text_field :last_name_kana
-  .field
-    = f.label :first_name_kana
-    %br/
-    = f.text_field :first_name_kana
-  .field
-    = f.label :zip_code
-    %br/
-    = f.text_field :zip_code
-  .field
-    = f.label :prefecture
-    %br/
-    = f.select :prefecture, Address.prefectures.keys.map {|k| [k, k]}, {}
-    .field
-    = f.label :city
-    %br/
-    = f.text_field :city
-  .field
-    = f.label :house_number
-    %br/
-    = f.text_field :house_number
-  .field
-    = f.label :apartment
-    %br/
-    = f.text_field :apartment
-  .actions
-    = f.submit "Sign up"
-= render "devise/shared/links"
+%header.single-header
+  .memberHeader
+    .menberHeader_logo
+      =link_to root_url do
+        =image_tag 'logo/logo.png',alt:'furima-logo',size:'185x49'
+    .memberStatus
+      .memberStatus__line
+      %ol.memberStatus__list
+        %li
+          .memberStatus__listItem
+            %p 会員情報
+            %p.memberStatus__listItem--point ●
+        %li
+          .memberStatus__listItem.memberStatus__listItem--next.memberStatus__listItem--active
+            %p 電話番号認証
+            %p.memberStatus__listItem--point ●
+        %li
+          .memberStatus__listItem.memberStatus__listItem--last
+            %p 完了
+            %p.memberStatus__listItem--point ●
+.menberform
+  .menberform__content
+    %h2 住所登録
+    = form_for @address do |f|
+      .field-half
+        = f.label :first_last_name, "お名前(全角)"
+        %span.required-text 必須
+        %br/
+        = f.text_field :last_name, :placeholder => "  例)山田"
+        = f.text_field :first_name, :placeholder => "  例)太郎"
+      .field-half
+        = f.label :first_last_name_kana, "お名前(かな)"
+        %span.required-text 必須
+        %br/
+        = f.text_field :last_name_kana, :placeholder => "  例)やまだ"
+        = f.text_field :first_name_kana, :placeholder => "  例)たろう"
+      .field
+        = f.label :zip_code, "郵便番号"
+        %span.required-text 必須
+        %br/
+        = f.text_field :zip_code
+      .field
+        = f.label :prefecture
+        %br/
+        = f.select :prefecture,Address.prefectures.keys.map {|k| [k, k]}, {} 
+        %span.required-text 必須
+      .field
+        = f.label :city, "市区町村"
+        %span.required-text 必須
+        %br/
+        = f.text_field :city 
+      .field
+        = f.label :house_number, "番地名"
+        %span.required-text 必須
+        %br/
+        = f.text_field :house_number
+      .field
+        = f.label :apartment, "マンション名もしくはアパート名"
+        %br/
+        = f.text_field :apartment
+      .actions-next
+        = f.submit class: 'btn-green-next', value: "次へ進む"
+
+.foot
+  .foot__top
+    %li プライバシーポリシー
+    %li フリマ利用規約
+    %li 特定商品に関する規約
+  .foot__mid
+    =image_tag '/assets/logo/logo.png',alt:"logo",class:"botic"
+  .foot__bot
+    ©️furima,inc
+-# %h2 住所情報登録
+-# = form_for @address do |f|
+-#   .field
+-#     = f.label :last_name
+-#     %br/
+-#     = f.text_field :last_name, autofocus: true
+-#   .field
+-#     = f.label :first_name
+-#     %br/
+-#     = f.text_field :first_name
+-#   .field
+-#     = f.label :last_name_kana
+-#     %br/
+-#     = f.text_field :last_name_kana
+-#   .field
+-#     = f.label :first_name_kana
+-#     %br/
+-#     = f.text_field :first_name_kana
+-#   .field
+-#     = f.label :zip_code
+-#     %br/
+-#     = f.text_field :zip_code
+-#   .field
+-#     = f.label :prefecture
+-#     %br/
+-#     = f.select :prefecture, Address.prefectures.keys.map {|k| [k, k]}, {}
+-#     .field
+-#     = f.label :city
+-#     %br/
+-#     = f.text_field :city
+-#   .field
+-#     = f.label :house_number
+-#     %br/
+-#     = f.text_field :house_number
+-#   .field
+-#     = f.label :apartment
+-#     %br/
+-#     = f.text_field :apartment
+-#   .actions
+-#     = f.submit "Sign up"
+-# = render "devise/shared/links"
