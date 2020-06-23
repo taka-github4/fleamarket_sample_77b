@@ -13,7 +13,4 @@ class ItemsController < ApplicationController
   end
   def destroy
   end
-  def buy
-    render layout: false
-  end
 end
