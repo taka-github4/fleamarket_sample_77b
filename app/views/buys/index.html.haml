@@ -1,0 +1,59 @@
+!!!
+%html
+  %head
+    %meta{content: "text/html; charset=UTF-8", "http-equiv": "Content-Type"}/
+    %title FleamarketSample77b
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    %link{href: "https://use.fontawesome.com/releases/v5.6.1/css/all.css", :rel => "stylesheet"}/
+.buyPage
+  .buyPage__logo
+    =link_to "#" do
+      = image_tag "logo/logo.png", size: '140x40', class: 'image'
+  .buyItem
+    .buyItem__confirmation
+      .confirmation
+        購入内容の確認
+    .buyItem__main
+    .buyItem__main__info
+      .info__image
+        = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/16/IMG_9072.JPG", size: '75x75', class: 'image'
+      .info__detail
+        .name
+          焼きそば！！焼きそば！！
+        %br
+        .postage
+          送料込み(税込)
+          %span.price
+            ¥888,888,888
+    .buyItem__main__total-price
+      .total-price__table
+        .payment
+          支払い金額
+        .total-price
+          ¥50,000
+    .buyItem__main__method
+      .method__table
+        %h3 支払い方法
+        .update
+          = link_to "変更する", "#", class: "update-btn"
+        .info-number
+          **** **** **** 1234
+          .info-date
+            有効期限 xx/xx
+    .buyItem__main__user-info
+      .user-info__table              
+        %h3 配送先
+        .update
+          = link_to "変更する", "#", class: "update-btn"
+        .info-text
+          〒123-4321
+          %br
+          大阪府大阪市大阪区大阪町12-34
+          %br
+          一二三四五六
+      = form_for "#" do |form|
+        = button_tag type: 'submit', class: "btn" do
+          購入する

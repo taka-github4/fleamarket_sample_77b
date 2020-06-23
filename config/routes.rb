@@ -7,10 +7,9 @@ Rails.application.routes.draw do
     post 'addresses', to: 'users/registrations#create_address'
   end
   root 'items#index'
-  get  'items/show'
-  get  'users/show'
+  resources :users, only: :index
+  resources :items
+  resources :buys, only: :index
   get 'users/card'
   get 'users/logout'
-  resources :users, only: :index
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
