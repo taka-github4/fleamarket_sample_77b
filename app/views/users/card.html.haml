@@ -1,0 +1,45 @@
+.card
+  = form_with do |card|
+    .card__title
+      クレジットカード情報入力
+    .cardInfo
+      .cardInfo__content
+        .cardInfo__content__num
+          カード番号
+          %span 必須
+          %p
+            = card.text_field :user_id, type: 'text', class:'credit_number' , placeholder: '半角数字のみ', maxlength: "16"
+          %ul
+            %li
+              = image_tag 'https://pcweb-assets.mercdn.net/assets/img/card/visa.svg?3222000695', width: '49', height: '20'
+            %li
+              = image_tag 'https://pcweb-assets.mercdn.net/assets/img/card/master-card.svg?3222000695', width: '34', height: '20'
+            %li
+              = image_tag 'https://pcweb-assets.mercdn.net/assets/img/card/saison-card.svg?3222000695', width: '30', height: '20'
+            %li
+              = image_tag 'https://pcweb-assets.mercdn.net/assets/img/card/jcb.svg?3222000695', width: '32', height: '20'
+            %li
+              = image_tag 'https://pcweb-assets.mercdn.net/assets/img/card/american_express.svg?3222000695', width: '21', height: '20'
+            %li
+              = image_tag 'https://pcweb-assets.mercdn.net/assets/img/card/dinersclub.svg?3222000695', width: '32', height: '20'
+            %li
+              = image_tag 'https://pcweb-assets.mercdn.net/assets/img/card/discover.svg?3222000695', width: '34', height: '20'
+
+      .cardInfo__content
+        .cardInfo__content__limit
+          有効期限
+          %span 必須
+          %p
+            = card.select :user_id, [["01",1],["02",2],["03",3],["04",4],["05",5],["06",6],["07",7],["08",8],["09",9],["10",10],["11",11],["12",12]],{}
+            %span 月
+            = card.select :user_id, [["20",2020],["21",2021],["22",2022],["23",2023],["24",2024],["25",2025],["26",2026],["27",2027],["28",2028],["29",2029],["30",2030]],{}
+            %span 年
+      .cardInfo__content
+        .cardInfo__content__code
+          セキュリティーコード
+          %span 必須
+          %p
+            = card.text_field :user_id, type: 'text', placeholder: 'カード背面4桁もしくは3桁の番号', maxlength: "4"
+      .cardInfo__content
+        .cardInfo__content__btn
+          = card.submit '追加する'

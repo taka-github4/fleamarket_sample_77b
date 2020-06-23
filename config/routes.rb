@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   end
   root 'items#index'
   resources :users, only: :index
-  resources :items, only: :show
+  resources :items
   resources :buys, only: :index
+  get 'users/card'
+  get 'users/logout'
 end
