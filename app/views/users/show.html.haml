@@ -1,0 +1,39 @@
+.userShow
+  .userProf
+    .userProf__img
+      =image_tag 'https://static.mercdn.net/images/member_photo_noimage_thumb.png',alt:"pict-reason01",class:"list-image1"
+    .userProf__name
+      = current_user.nickname
+  .userContents
+    .userContent
+      .userContent__sell
+        %a.link_button{:href => "#"}
+          出品する
+    .userContent
+      .userContent__bought
+        %a.link_button{:href => "#"}
+          購入した商品
+    .userContent
+      .userContent__like
+        %a.link_button{:href => "#"}
+          いいね！一覧
+    .userContent
+      .userContent__card
+        %a.link_button{:href => "/users/card"}
+          クレジットカード情報
+    .userContent
+      .userContent__prof
+        %a.link_button{:href => "#"}
+          プロフィール
+    .userContent
+      .userContent__mail
+        %a.link_button{:href => "#"}
+          メール/パスワード
+    .userContent
+      .userContent__telephone
+        %a.link_button{:href => "#"}
+          電話番号の確認
+    .userContent
+      .userContent__logout
+        %a.link_button{:href => "/users/logout"}
+          ログアウト
