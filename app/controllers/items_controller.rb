@@ -4,6 +4,7 @@ class ItemsController < ApplicationController
   def show
   end
   def new
+    render layout: false
   end
   def create
   end
