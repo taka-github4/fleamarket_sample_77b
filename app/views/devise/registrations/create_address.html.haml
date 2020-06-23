@@ -1,2 +1,30 @@
-%h2 登録が完了しました
-= link_to "トップへ戻る", root_url
+%header.singleHeader
+  .memberHeader
+    .menberHeader_logo
+      =link_to root_url do
+        =image_tag 'logo/logo.png',alt:'furima-logo',size:'185x49'
+    .memberStatus
+      .memberStatus__line
+      %ol.memberStatus__list
+        %li
+          .memberStatus__listItem
+            %p 会員情報
+            %p.memberStatus__listItem--point ●
+        %li
+          .memberStatus__listItem.memberStatus__listItem--next
+            %p 電話番号認証
+            %p.memberStatus__listItem--point ●
+        %li
+          .memberStatus__listItem.memberStatus__listItem--last.memberStatus__listItem--active
+            %p 完了
+            %p.memberStatus__listItem--point ●
+.memberCreate
+  .memberCreate__content
+    %h2 会員登録完了
+    .memberCreate__message
+      ありがとうございます。
+      %br
+      会員登録が完了しました。
+    = link_to root_url do
+      .memberCreate__btn
+        FURIMAを始める

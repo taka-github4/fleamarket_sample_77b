@@ -1,44 +1,74 @@
-%h2 ユーザー情報登録
-= form_for(@user, url: user_registration_path) do |f|
-  .field
-    = f.label :last_name
-    %br/
-    = f.text_field :last_name, autofocus: true
-  .field
-    = f.label :first_name
-    %br/
-    = f.text_field :first_name
-  .field
-    = f.label :last_name_kana
-    %br/
-    = f.text_field :last_name_kana
-  .field
-    = f.label :first_name_kana
-    %br/
-    = f.text_field :first_name_kana
-  .field
-    = f.label :nickname
-    %br/
-    = f.text_field :nickname
-  .field
-    = f.label :birthday
-    %br/
-    != sprintf(f.date_select(:birthday,use_month_numbers:true, start_year:1930, end_year:2002, prompt:"--",date_separator:'%s'),'／','／')
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autocomplete: "email"
-  .field
-    = f.label :password
-    - if @minimum_password_length
-      %em
-        (#{@minimum_password_length} characters minimum)
-    %br/
-    = f.password_field :password, autocomplete: "new-password"
-  .field
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "new-password"
-  .actions
-    = f.submit "Next"
-= render "devise/shared/links"
+%header.singleHeader
+  .memberHeader
+    .menberHeader-logo
+      =link_to root_url do
+        =image_tag 'logo/logo.png',alt:"furima-logo",size:"185x49"
+    .memberStatus
+      .memberStatus__line
+      %ol.memberStatus__list
+        %li
+          .memberStatus__listItem.memberStatus__listItem--active
+            %p 会員情報
+            %p.memberStatus__listItem--point ●
+        %li
+          .memberStatus__listItem.memberStatus__listItem--next
+            %p 電話番号認証
+            %p.memberStatus__listItem--point ●
+        %li
+          .memberStatus__listItem.memberStatus__listItem--last
+            %p 完了
+            %p.memberStatus__listItem--point ●
+.menberForm
+  .menberForm__content
+    %h2 会員情報入力
+    = form_for(@user, url: user_registration_path) do |f|
+      = render "devise/shared/error_messages", resource: @user
+      .field
+        = f.label :nickname, "ニックネーム"
+        %span.required-text 必須
+        %br/
+        = f.text_field :nickname, :placeholder => "  例)フリマ太郎", :size => 40
+      .field
+        = f.label :email, "メールアドレス"
+        %span.required-text 必須
+        %br/
+        = f.email_field :email, autofocus: true, autocomplete: "email", :placeholder => "  PC・携帯どちらでも可"
+      .field-password
+        = f.label :password, "パスワード"
+        %span.required-text 必須
+        - if @minimum_password_length
+          %em
+            
+        %br/
+        = f.password_field :password, autocomplete: "new-password", :placeholder => "  7文字以上の半角英数字"
+      .field
+        = f.label :password_confirmation, "確認のためもう一度パスワードの記入をお願いします。"
+        %span.required-text 必須
+        %br/
+        = f.password_field :password_confirmation, autocomplete: "new-password", :placeholder => " パスワードの再記入お願いします。"
+        %br/
+        %p.form-info-text *英字と数字の両方を含めて設定してください
+      .form-text
+        %h3.form-text__title 本人確認
+        %p.form-text__content 安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
+      .field-half
+        = f.label :first_last_name, "お名前(全角)"
+        %span.required-text 必須
+        %br/
+        = f.text_field :last_name, :placeholder => "  例)山田"
+        = f.text_field :first_name, :placeholder => "  例)太郎"
+      .field-half
+        = f.label :first_last_name_kana, "お名前(かな)"
+        %span.required-text 必須
+        %br/
+        = f.text_field :last_name_kana, :placeholder => "  例)やまだ"
+        = f.text_field :first_name_kana, :placeholder => "  例)たろう"
+      .field
+        = f.label :birthday, "生年月日"
+        %span.required-text 必須
+        %br/
+        != sprintf(f.date_select(:birthday,use_month_numbers:true, start_year:1930, end_year:2000,prompt:"--",date_separator:'%s'),'年','月')+'日'
+        %br/
+        %p.field__info-text ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
+      .actions
+        = f.submit class: 'btn-green', value: "次へ進む"
