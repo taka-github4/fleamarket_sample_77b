@@ -13,125 +13,116 @@
     =image_tag '/assets/logo/logo.png',alt:"logo",class:"frm"
   .sell-container-main
     .sell-container-main__block
-
-      .product-content__drop
-        .product-content__drop__name
-          %label 商品画像
-          %span.require 必須
-          %p 最大10枚までアップロードできます
-            
-        .container
-          %input{class: "drop-box",placeholder:"ドラッグアンドドロップまたはクリックしてファイルをアップロード"}
-          
-          
-
-      .product-content__name
-        .product-content__name__name
-          %label
-            商品名
+      = form_for @item,{multipart: :true} do |f|
+        .product-content__drop
+          .product-content__drop__name
+            %label 商品画像
             %span.require 必須
-          %div
-            %input{class: "product__text__field",placeholder:"商品名（必須 40文字まで)"}
-        .product-content__name__info
-          %label
-            商品説明
-            %span.require 必須
-          %div
-            %input{class: "product__text__field--wide",placeholder:"商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"}
-          .count-up 
-            %div
-            0/1000
-
-      .product-content__detail
-        %h2.sell-content 商品の詳細
-        .product-content__detail__name
-          %label
-            カテゴリー
-            %span.require 必須
-          %div
-            = form_with(model: @posts, local: true) do |form|
-              = form.select :product__text__field, [ ["選択して下さい",""],["レディース","1"],["メンズ","2"],["ベビー・キッズ","3"],["インテリア・住まい・小物","4"],["本・音楽・ゲーム","5"],["おもちゃ・ホビー・グッズ","6"],["コスメ・香水・美容","7"],["家電・スマホ・カメラ","8"],["スポーツ・レジャー","9"],["ハンドメイド","10"],["チケット","11"],["自動車・オートバイ","12"],["その他","13"]]
-
-
-        .product-content__detail__info
-          %label
-            ブランド
-            %span.require--gray 任意
-          %div
-            %input{class: "product__text__field",placeholder:"例) シャネル"}
-        .product-content__detail__status
-          %label
-            商品の状態
-            %span.require 必須
-          %div
-            = form_with(model: @posts, local: true) do |form|
-              = form.select :product__text__field, [ ["選択して下さい",""],["新品・未使用","1"],["未使用に近い","2"],["目立った傷や汚れなし","3"],["やや傷や汚れあり","4"],["傷や汚れあり","5"],["全体的に状態が悪い","6"]]
-        
-
-      .product-content__delivery
-        %h3.sell-content 
-          配送について
-          = link_to "#" do 
-            %i.far.fa-question-circle 
-        .product-content__delivery__name
-          %label
-            配送料の負担
-            %span.require 必須
-          %div
-            = form_with(model: @posts, local: true) do |form|
-              = form.select :product__text__field, [ ["選択して下さい",""],["送料込み(出品者負担)","1"],["着払い(購入者負担)","2"]]
-        .product-content__delivery__info
-          %label
-            発送元の地域
-            %span.require 必須
-          %div
-            %input{class:"product__text__field"}
-            -# = form_with(model: @posts, local: true) do |form|
-            -#   = form.text :product__text__field, [ ["選択して下さい",""],["北海道", "1"],["青森県", "2"],["岩手県", "3"],["宮城県", "4"],["秋田県", "5"],["山形県", "6"],["福島県", "7"],["茨城県", "8"],["栃木県", "9"],["群馬県", "10"],["埼玉県", "11"],["千葉県", "12"],["東京都", "13"],["神奈川県", "14"],["新潟県", "15"],["富山県", "16"],["石川県", "17"],["福井県", "18"],["山梨県", "19"],["長野県", "20"],["岐阜県", "21"],["静岡県", "22"],["愛知県", "23"],["三重県", "24"],["滋賀県", "25"],["京都府", "26"],["大阪府", "27"],["兵庫県", "28"],["奈良県", "29"],["和歌山県", "30"],["鳥取県", "31"],["島根県", "32"],["岡山県", "33"],["広島県", "34"],["山口県", "35"],["徳島県", "36"],["香川県", "37"],["愛媛県", "38"],["高知県", "39"],["福岡県", "40"],["佐賀県", "41"],["長崎県", "42"],["熊本県", "43"],["大分県", "44"],["宮崎県", "45"],["鹿児島県", "46"], ["沖縄県", "47"]]
-
-
-          .product-content__delivery__days
-          %label
-            発送までの日数
-            %span.require 必須
-          %div
-            = form_with(model: @posts, local: true) do |form|
-              = form.select :product__text__field, [ ["選択して下さい",""],["1~2日で発送","1"],["2~3日で発送","2"],["4~7日で発送","3"]]
-
-      .product-content__price
-        %h4.sell-content 
-          価格（¥300〜9,999,999)
-          = link_to "#" do 
-            %i.far.fa-question-circle 
-        .product-content__price__text
-          %ul
-            %li
-              %label 販売価格
+            %p 最大10枚までアップロードできます
+          .container
+            #photo-box.drop-box
+              #previews
+                - if @item.persisted?
+                  - @item.photos.each_with_index do |photo, i|
+                    = image_tag photo.image.url, data: { index: i }, width: "100", height: '100'
+              = f.fields_for :photos do |photo|
+                .js-file_group{"data-index" => "#{photo.index}"}
+                  = photo.file_field :image, class: 'js-file'
+                  %br/
+                  %span.js-remove 削除
+                - if @item.persisted?
+                  = photo.check_box :_destroy, data:{ index: photo.index }, class: 'hidden-destroy'
+              - if @item.persisted?
+                .js-file_group{"data-index" => "#{@item.photos.count}"}
+                  = file_field_tag :image, name: "item[photos_attributes][#{@item.photos.count}][image]", class: 'js-file'
+                  .js-remove 削除
+        .product-content__name
+          .product-content__name__name
+            %label
+              商品名
               %span.require 必須
-          %p
-            %label.mark ¥
-            %input.product__num__field{placeholder: "0", type: "number"}/
-        .fee
-          .fee__left 
-            %span 販売手数料（10%）
-          .fee__right 
-            %label ー
-        .profit
-          .profit__left
-            %span 販売利益
-          .profit__right
-            %label ー
-
-      .sell__block__form__btn
-        %div
-          = link_to "#" do 
-            %input{type:  "button", value: "出品する", class: "btn-red"} 
-        %div
-          = link_to "#" do 
-            %input{type:"button", value:"下書き",class: "btn-gray" }
-        = link_to "#" do 
-          もどる
-    
+            %div
+              = f.text_field :name,{class: "product__text__field",placeholder:"商品名（必須 40文字まで)"}
+          .product-content__name__info
+            %label
+              商品説明
+              %span.require 必須
+            %div
+              = f.text_area :description,{class: "product__text__field--wide",placeholder:"商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"}
+            .count-up 
+              0/1000
+        .product-content__detail
+          %h2.sell-content 商品の詳細
+          .product-content__detail__name
+            %label
+              カテゴリー
+              %span.require 必須
+            #category-box
+              = f.collection_select :category_id, @parents,:id ,:name,{prompt: "選択してください",class:"product__text__field"}
+          .product-content__detail__info
+            %label
+              ブランド
+              %span.require--gray 任意
+            %div
+              = f.text_field :brand,{class: "product__text__field",placeholder:"例) シャネル"}
+          .product-content__detail__status
+            %label
+              商品の状態
+              %span.require 必須
+            %div
+              =f.collection_select(:item_condition_id, ItemCondition.all, :id, :name,{include_blank: "選択してください",class:"product__text__field"} )
+        .product-content__delivery
+          %h3.sell-content 
+            配送について
+            = link_to "#" do 
+              %i.far.fa-question-circle 
+          .product-content__delivery__name
+            %label
+              配送料の負担
+              %span.require 必須
+            %div
+              =f.collection_select(:burden_id, Burden.all, :id, :name,{include_blank: "選択してください",class:"product__text__field"} )
+          .product-content__delivery__info
+            %label
+              発送元の地域
+              %span.require 必須
+            %div
+              =f.collection_select(:prefectures_id, Prefecture.all, :id, :name,{include_blank: "選択してください",class:"product__text__field"} )
+            .product-content__delivery__days
+            %label
+              発送までの日数
+              %span.require 必須
+            %div
+              =f.collection_select(:days_id, Days.all, :id, :name,{include_blank: "選択してください",class:"product__text__field"} )
+        .product-content__price
+          %h4.sell-content 
+            価格（¥300〜9,999,999)
+            = link_to "#" do 
+              %i.far.fa-question-circle 
+          .product-content__price__text
+            %ul
+              %li
+                %label 販売価格
+                %span.require 必須
+            %p
+              %label.mark ¥
+              = f.text_field :price,{class:"product__num__field",placeholder: "0"}
+          .fee
+            .fee__left 
+              %span 販売手数料（10%）
+            .fee__right 
+              %label ー
+          .profit
+            .profit__left
+              %span 販売利益
+            .profit__right
+              %label ー
+        .sell__block__form__btn
+          %div
+            = f.submit"出品する",{class: "btn-red"} 
+          %div
+          = link_to root_url do 
+            もどる
       .product-content__caution
         .caution-text
           %div
@@ -162,5 +153,3 @@
         =image_tag '/assets/logo/logo.png',alt:"logo",class:"frm"
       %p.footer__copyright
         © 2020 FURIMA
-
-

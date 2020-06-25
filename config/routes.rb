@@ -13,6 +13,11 @@ Rails.application.routes.draw do
       get 'logout'
     end
   end
-  resources :items, only: [:index, :show, :new]
+  resources :items, only: [:index, :show, :new, :create] do
+    collection do
+      get 'children', defaults: { format: 'json' }
+      get 'grandchildren', defaults: { format: 'json' }
+    end
+  end
   resources :buys, only: :index
 end

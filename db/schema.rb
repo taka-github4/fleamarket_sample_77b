@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_20_105709) do
+ActiveRecord::Schema.define(version: 2020_06_24_085942) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "first_name", null: false
@@ -26,6 +26,41 @@ ActiveRecord::Schema.define(version: 2020_06_20_105709) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_addresses_on_user_id"
+  end
+
+  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "ancestry"
+    t.index ["ancestry"], name: "index_categories_on_ancestry"
+  end
+
+  create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "price", null: false
+    t.integer "size_id"
+    t.text "description", null: false
+    t.integer "item_condition_id", default: 0, null: false
+    t.integer "burden_id", default: 0, null: false
+    t.integer "prefectures_id", default: 0, null: false
+    t.integer "days_id", default: 0, null: false
+    t.string "brand"
+    t.integer "purchaser_id"
+    t.bigint "category_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_items_on_category_id"
+    t.index ["user_id"], name: "index_items_on_user_id"
+  end
+
+  create_table "photos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "image", null: false
+    t.bigint "item_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_photos_on_item_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -46,4 +81,7 @@ ActiveRecord::Schema.define(version: 2020_06_20_105709) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "items", "categories"
+  add_foreign_key "items", "users"
+  add_foreign_key "photos", "items"
 end
