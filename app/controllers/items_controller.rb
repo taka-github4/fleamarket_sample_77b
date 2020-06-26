@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   layout false,only: [:new,:create]
-  before_action :goto_login,only:[:new,:create]
+  before_action :authenticate_user!, only: [:new, :create]
 
   def index
   end
@@ -17,6 +17,7 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
+      flash[:notice] = "商品を出品しました。"
       redirect_to root_path
     else
       @item.photos.new
@@ -54,13 +55,6 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:name,  :price, :size_id, :category_id,:description, :item_condition_id, :burden_id, :prefectures_id, :days_id, :brand,  photos_attributes: [:image, :_destroy, :id]).merge(user_id: current_user.id)
-  end
-
-  def goto_login
-    if current_user.nil?
-      flash[:alert] = "ログインしてください"
-      redirect_to root_url
-    end
   end
 
 end
