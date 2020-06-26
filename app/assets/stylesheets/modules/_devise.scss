@@ -33,7 +33,7 @@
     &__line{
     border-bottom: 2px solid lightgray;
     position: absolute;
-    width: 160px;
+    width: 150px;
     top: 32px;
     left: 70px;
     z-index: 1;
@@ -94,7 +94,9 @@
     .new_user{
       padding: 20px 40px 64px;
     }
-      
+    .field_with_errors {
+      display: contents;
+    }
     .field{
       height: 70px;
       width: 500px;
@@ -109,6 +111,7 @@
         text-align: left;
         font-weight: normal;
         margin-top: 5px;
+        padding: 10px 16px 8px;
       }
       #user_email{
         height: 50px;
@@ -116,6 +119,7 @@
         text-align: left;
         font-weight: normal;
         margin-top: 5px;
+        padding: 10px 16px 8px;
       }
       #user_password_confirmation{
         height: 50px;
@@ -123,6 +127,7 @@
         text-align: left;
         font-weight: normal;
         margin-top: 5px;
+        padding: 10px 16px 8px;
       }
       #user_birthday_1i{
         height: 50px;
@@ -148,6 +153,7 @@
         text-align: left;
         font-weight: normal;
         margin-top: 5px;
+        padding: 10px 16px 8px;
       }
       #address_city{
         height: 50px;
@@ -155,6 +161,7 @@
         text-align: left;
         font-weight: normal;
         margin-top: 5px;
+        padding: 10px 16px 8px;
       }
       #address_house_number{
         height: 50px;
@@ -162,6 +169,7 @@
         text-align: left;
         font-weight: normal;
         margin-top: 5px;
+        padding: 10px 16px 8px;
       }
       #address_apartment{
         height: 50px;
@@ -169,6 +177,7 @@
         text-align: left;
         font-weight: normal;
         margin-top: 5px;
+        padding: 10px 16px 8px;
       }
       #address_prefecture{
         height: 50px;
@@ -204,6 +213,7 @@
         text-align: left;
         font-weight: normal;
         margin-top: 5px;
+        padding: 10px 16px 8px;
       }
       .form-info-text{
         font-weight: normal;
@@ -239,48 +249,56 @@
         width: 174px;
         font-weight: normal;
         margin-top: 5px;
+        padding: 10px 16px 8px;
       }
       #user_last_name{
         height: 50px;
         width: 174px;
         font-weight: normal;
         margin-top: 5px;
+        padding: 10px 16px 8px;
       }
       #user_first_name_kana{
         height: 50px;
         width: 174px;
         font-weight: normal;
         margin-top: 5px;
+        padding: 10px 16px 8px;
       }
       #user_last_name_kana{
         height: 50px;
         width: 174px;
         font-weight: normal;
         margin-top: 5px;
+        padding: 10px 16px 8px;
       }
       #address_last_name{
         height: 50px;
         width: 174px;
         font-weight: normal;
         margin-top: 5px;
+        padding: 10px 16px 8px;
       }
       #address_first_name{
         height: 50px;
         width: 174px;
         font-weight: normal;
         margin-top: 5px;
+        padding: 10px 16px 8px;
       }
       #address_last_name_kana{
         height: 50px;
         width: 174px;
         font-weight: normal;
         margin-top: 5px;
+        padding: 10px 16px 8px;
       }
       #address_first_name_kana{
         height: 50px;
         width: 174px;
         font-weight: normal;
         margin-top: 5px;
+        padding: 10px 16px 8px;
       }
     }
     .actions{

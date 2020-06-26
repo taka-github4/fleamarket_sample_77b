@@ -12,7 +12,7 @@
             %p.memberStatus__listItem--point ●
         %li
           .memberStatus__listItem.memberStatus__listItem--next.memberStatus__listItem--active
-            %p 電話番号認証
+            %p 住所情報
             %p.memberStatus__listItem--point ●
         %li
           .memberStatus__listItem.memberStatus__listItem--last
@@ -26,14 +26,14 @@
         = f.label :first_last_name, "お名前(全角)"
         %span.required-text 必須
         %br/
-        = f.text_field :last_name, :placeholder => "  例)山田"
-        = f.text_field :first_name, :placeholder => "  例)太郎"
+        = f.text_field :last_name, :placeholder => "例) 山田"
+        = f.text_field :first_name, :placeholder => "例) 太郎"
       .field-half
         = f.label :first_last_name_kana, "お名前(かな)"
         %span.required-text 必須
         %br/
-        = f.text_field :last_name_kana, :placeholder => "  例)やまだ"
-        = f.text_field :first_name_kana, :placeholder => "  例)たろう"
+        = f.text_field :last_name_kana, :placeholder => "例) やまだ"
+        = f.text_field :first_name_kana, :placeholder => "例) たろう"
       .field
         = f.label :zip_code, "郵便番号"
         %span.required-text 必須
