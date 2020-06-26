@@ -94,7 +94,6 @@ $(document).on('turbolinks:load', ()=> {
     $('#image-box').find('#' + targetId).remove();
     $('div').find('.image__addbox--add').parent().remove();
     var nowImageboxCount = $('#image-box').children().length;
-    console.log(nowImageboxCount)
     $('#image-box').append(buildFileField(targetId,nowImageboxCount));
     });        
 
