@@ -1,6 +1,19 @@
 ---
   ja:
     activerecord:
+      models:
+        item: 商品
+      attributes:
+        item:
+          photos: 写真
+          name: 商品名
+          description: 商品説明文
+          item_condition_id: 商品の状態
+          burden_id: 配送料の負担
+          prefectures_id: 発送元地域
+          days_id: 発送までの日数
+          price: 金額
+          category_id: カテゴリ
       errors:
         messages:
           record_invalid: 'バリデーションに失敗しました: %{errors}'
@@ -107,6 +120,9 @@
         month: 月
         year: 年
     errors:
+      attributes:
+        item:
+          name: 商品名
       format: "%{attribute}%{message}"
       messages:
         accepted: を受諾してください
