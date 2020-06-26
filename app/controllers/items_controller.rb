@@ -1,4 +1,7 @@
 class ItemsController < ApplicationController
+  layout false,only: [:new,:create]
+  before_action :goto_login,only:[:new,:create]
+
   def index
   end
 
@@ -8,8 +11,7 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
     @item.photos.new
-    @parents = Category.all.order("id ASC").limit(1)
-    render layout: false
+    @parents = Category.where(ancestry: nil)
   end
 
   def create
@@ -17,7 +19,9 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to root_path
     else
-      @parents = Category.all.order("id ASC").limit(1)
+      @item.photos.new
+      @parents = Category.where(ancestry: nil)
+      flash.now[:alert] = @item.errors.full_messages
       render :new
     end
   end
@@ -32,7 +36,7 @@ class ItemsController < ApplicationController
   def children
     respond_to do |format|
       format.json do
-        @children = Category.find_by(params[:id]).children
+        @children = Category.find(params[:id]).children
       end
     end
   end
@@ -50,6 +54,13 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:name,  :price, :size_id, :category_id,:description, :item_condition_id, :burden_id, :prefectures_id, :days_id, :brand,  photos_attributes: [:image, :_destroy, :id]).merge(user_id: current_user.id)
+  end
+
+  def goto_login
+    if current_user.nil?
+      flash[:alert] = "ログインしてください"
+      redirect_to root_url
+    end
   end
 
 end

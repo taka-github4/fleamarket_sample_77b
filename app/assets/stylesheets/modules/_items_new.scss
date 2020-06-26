@@ -44,12 +44,10 @@
     }
 
     .drop-box {
-      width: 600px;
       margin: 8px 0 0;
-      height: 120px;
-      padding: 10px 16px 8px;
-      border-radius: 4px;
-      border: 1px solid #ccc;
+      display: flex;
+      justify-content: center;
+      min-height: 120px;
       background: #fff;
       line-height: 1.5;
       font-size: 16px;
@@ -294,6 +292,65 @@
   }
 }
 
-
+#image-boxes{
+  display: flex;
+  max-width: 570px;
+  overflow: hidden;
+}
+#image-box{
+  min-height:114px;
+  label{
+    float: left;
+  }
+}
+.image__addbox{
+  min-width: 114px;
+  min-height: 134px;
+  background-color: lightgray;
+  display: inline-block;
+  &--add{
+    min-height: 134px;
+    background-color: lightgray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+  }
+}
+.image__startbox{
+  background-color: lightgray;
+  width: 570px;
+  height: 134px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &--textbox{
+    display: flex;
+    flex-direction: column;
+  }
+  &--camera{
+    text-align: center;
+    font-size: 24px;
+  }
+  &--text{
+    margin-top: 10px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: normal;
+  }
+}
+.buildImg{
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+}
+.js-remove{
+  width:112px;
+  height:20px;
+  text-align: center;
+  line-height: 20px;
+  color: #FFF;
+  background-color: #3CCACE;
+}
 
 
