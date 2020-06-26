@@ -11,7 +11,7 @@
     = render 'layouts/notifications'
     .sell-container
       .sell-container-header
-        =image_tag '/assets/logo/logo.png',alt:"logo",class:"frm"
+        =image_tag 'logo/logo.png',alt:"logo",class:"frm"
       .sell-container-main
         .sell-container-main__block
           = form_for @item,{multipart: :true} do |f|
