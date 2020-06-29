@@ -1,0 +1,36 @@
+.productLists
+  .productList
+    - @items.each do |item|
+      -if item.purchaser_id == nil 
+        =link_to '#' do
+          .productList-img
+            =image_tag item.photos.first.image.url
+          .productList-body
+            .name
+              = item.name
+            .details
+              %ul
+                %li
+                  = item.price 
+                  円
+                %li
+                  = icon('fas', 'star', class: 'icon')
+                  .like 0
+              %h4 (税込)
+      -else
+        =link_to '#' do
+          .productList-img
+            =image_tag item.photos.first.image.url
+            %label.product_buy 売り切れました
+          .productList-body
+            .name
+              = item.name
+            .details
+              %ul
+                %li
+                  = item.price
+                  円
+                %li
+                  = icon('fas', 'star', class: 'icon')
+                  .like 0
+              %h4 (税込)

@@ -5,6 +5,7 @@ class ItemsController < ApplicationController
   before_action :not_useritem,only:[:edit,:update]
 
   def index
+    @items = Item.all.includes(:photos).order('created_at DESC').limit(4)
   end
 
   def show
