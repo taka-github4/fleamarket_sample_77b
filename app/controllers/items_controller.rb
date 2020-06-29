@@ -1,6 +1,8 @@
 class ItemsController < ApplicationController
-  layout false,only: [:new,:create]
-  before_action :authenticate_user!, only: [:new, :create]
+  layout false,only: [:new,:create,:edit,:update]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
+  before_action :set_item,only:[:edit,:update]
+  before_action :not_useritem,only:[:edit,:update]
 
   def index
   end
@@ -28,9 +30,31 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    @item.photos.new
+    @parent = Category.find(@item.category_id).parent.parent_id
+    @child = Category.find(@item.category_id).parent_id
+    @parents = Category.where(ancestry: nil)
+    @children = Category.where(ancestry: "#{@parent}")
+    @grandchildren = Category.where(ancestry: "#{@parent}/#{@child}")
   end
+
   def update
+    if @item.update(item_params)
+      flash[:notice] = "商品情報を更新しました。"
+      redirect_to root_path
+    else
+      flash.now[:alert] = @item.errors.full_messages
+      @item = Item.find(params[:id])
+      @item.photos.new
+      @parent = Category.find(@item.category_id).parent.parent_id
+      @child = Category.find(@item.category_id).parent_id
+      @parents = Category.where(ancestry: nil)
+      @children = Category.where(ancestry: "#{@parent}")
+      @grandchildren = Category.where(ancestry: "#{@parent}/#{@child}")
+      render :new
+    end
   end
+
   def destroy
   end
 
@@ -57,4 +81,14 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:name,  :price, :size_id, :category_id,:description, :item_condition_id, :burden_id, :prefectures_id, :days_id, :brand,  photos_attributes: [:image, :_destroy, :id]).merge(user_id: current_user.id)
   end
 
+  def set_item
+    @item = Item.find(params[:id])
+  end
+
+  def not_useritem
+    if @item.user_id != current_user.id
+      flash[:alert] = "違うユーザーの商品です。"
+      redirect_to root_url
+    end
+  end
 end
