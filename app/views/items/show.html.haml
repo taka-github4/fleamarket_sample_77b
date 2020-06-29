@@ -35,11 +35,11 @@
             %tr
               %th カテゴリー
               %td
-                = link_to @item.category.parent.parent.name, "/categories/#{@item.category.parent.parent.id}"
+                = link_to @item.category.parent.parent.name, category_path(@item.category.parent.parent)
                 %br/
-                = link_to @item.category.parent.name, "/categories/#{@item.category.parent.id}"
+                = link_to @item.category.parent.name, category_path(@item.category.parent)
                 %br/
-                = link_to @item.category.name, "/categories/#{@item.category.id}"
+                = link_to @item.category.name, category_path(@item.category)
             %tr
               %th ブランド
               %td
