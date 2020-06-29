@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
-  has_many :categories
+  belongs_to :user
+  belongs_to :category
   has_many :photos
   validates :photos, presence: true
   accepts_nested_attributes_for :photos, allow_destroy: true
