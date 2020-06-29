@@ -6,7 +6,7 @@
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
-    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application'
   %body
     = render 'layouts/notifications'
     .sell-container
@@ -23,17 +23,27 @@
               .container
                 #photo-box.drop-box
                   #image-boxes
-                    = f.fields_for :photos do |photo|
-                      #image-box
-                        =photo.label :image,class:"image__add",data:{index:"0"},id:"0" do
-                          .image__startbox
-                            .image__startbox--textbox
-                              = icon('fas', 'camera',  class: "image__startbox--camera")
-                              .image__startbox--text
-                                ドラッグアンドドロップ
-                                %br
-                                またはクリックしてファイルをアップロード
-                          = photo.file_field :image,class:'js-file', style:"display:none;"
+                    #image-box
+                      -@item.photos.each do |photo|
+                        =f.fields_for :photos,photo do |p|
+                          -if p.index != (@item.photos.length - 1)
+                            =p.label :image,class:"image__add",data:{index:"#{p.index}"},id:"#{p.index}" do
+                              = p.file_field :image,class:'js-file', style:"display:none;"
+                              .buildImg
+                                .buildImg__edit
+                                  編集
+                                =image_tag photo.image.url ,data:{index:"#{p.index}"},size:"112x112" if photo.image?
+                                .js-remove
+                                  削除
+                            =p.check_box :_destroy,data:{ index: p.index },class:"destroyCheck",style:"display:none;"
+                          - elsif @item.photos.length < 10
+                            =p.label :image,{class:"image__add",data:{index:"#{p.index}"},id:"#{p.index}"} do
+                              .image__addbox--add{style:"width:#{570 - ((p.index % 5) * 114)}px;"}
+                                .image__addbox--textbox
+                                  = icon('fas', 'camera')
+                                  %p 画像を追加
+                              .js-file_group{data:{index:"#{p.index}"}}
+                              =p.file_field :image,{class:"js-file",style:"display:none;",name:"item[photos_attributes][#{p.index}][image]",id:"item_photos_attributes_#{p.index}_image"}
             .product-content__name
               .product-content__name__name
                 %label
@@ -57,7 +67,19 @@
                   %span.require 必須
                 #category-box
                   #category__parents
-                    = f.collection_select :category_id, @parents,:id ,:name,{include_blank: "選択してください",class:"product__text__field"}
+                    = f.collection_select :category_id, @parents,:id ,:name,{include_blank: "選択してください",class:"product__text__field",selected:@parent}
+                  -if @item.category_id
+                    #category__children
+                      = f.collection_select :category_id, @children,:id ,:name,{include_blank: "選択してください",class:"product__text__field",selected:@child}
+                    #category__grandchildren
+                      = f.collection_select :category_id, @grandchildren,:id ,:name,{include_blank: "選択してください",class:"product__text__field"}
+                  -if @item.size_id
+                    .product-content__detail__size
+                      %label
+                        サイズ
+                        %span.require--gray 任意
+                      %div
+                        =f.collection_select(:size_id, Size.all, :id, :name,{include_blank: "選択してください",class:"product__text__field"} )
               .product-content__detail__info
                 %label
                   ブランド

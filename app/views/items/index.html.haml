@@ -86,63 +86,7 @@
     .productHead
       =link_to '#' do
         新規投稿商品
-    .productLists
-      .productList
-        =link_to '#' do
-          .productList-img
-            =image_tag 'https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/16/IMG_9072.JPG',alt:"pickupContainer-img01",class:"productList-img01"
-          .productList-body
-            .name
-              name
-            .details
-              %ul
-                %li 0000円
-                %li 
-                  = icon('fas', 'star', class: 'icon')
-                  .like 0
-              %h4 (税込)
-      .productList
-        =link_to '#' do
-          .productList-img
-            =image_tag 'https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/13/a007.png',alt:"pickupContainer-img02",class:"productList-img02"
-          .productList-body
-            .name
-              name
-            .details
-              %ul
-                %li 0000円
-                %li 
-                  = icon('fas', 'star', class: 'icon')
-                  .like 0
-              %h4 (税込)
-      .productList
-        =link_to '#' do
-          .productList-img
-            =image_tag 'https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png',alt:"pickupContainer-img03",class:"productList-img03"
-          .productList-body
-            .name
-              name
-            .details
-              %ul
-                %li 0000円
-                %li 
-                  = icon('fas', 'star', class: 'icon')
-                  .like 0
-              %h4 (税込)
-      .productList
-        =link_to '#' do
-          .productList-img
-            =image_tag 'https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/7/a001.png',alt:"pickupContainer-img04",class:"productList-img04"
-          .productList-body
-            .name
-              name
-            .details
-              %ul
-                %li 0000円
-                %li 
-                  = icon('fas', 'star', class: 'icon')
-                  .like 0
-              %h4 (税込)
+    = render 'layouts/items-contents'
 
 .pickupContainer.pickupContainer--lower
   .head
@@ -151,60 +95,4 @@
     .productHead
       =link_to '#' do
         アーカイバ
-    .productLists
-      .productList
-        =link_to '#' do
-          .productList-img
-            =image_tag 'https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/16/IMG_9072.JPG',alt:"pickupContainer-img01",class:"productList-img01"
-          .productList-body
-            .name
-              name
-            .details
-              %ul
-                %li 0000円
-                %li 
-                  = icon('fas', 'star', class: 'icon')
-                  .like 0
-              %h4 (税込)
-      .productList
-        =link_to '#' do
-          .productList-img
-            =image_tag 'https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/13/a007.png',alt:"pickupContainer-img02",class:"productList-img02"
-          .productList-body
-            .name
-              name
-            .details
-              %ul
-                %li 0000円
-                %li 
-                  = icon('fas', 'star', class: 'icon')
-                  .like 0
-              %h4 (税込)
-      .productList
-        =link_to '#' do
-          .productList-img
-            =image_tag 'https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png',alt:"pickupContainer-img03",class:"productList-img03"
-          .productList-body
-            .name
-              name
-            .details
-              %ul
-                %li 0000円
-                %li 
-                  = icon('fas', 'star', class: 'icon')
-                  .like 0
-              %h4 (税込)
-      .productList
-        =link_to '#' do
-          .productList-img
-            =image_tag 'https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/7/a001.png',alt:"pickupContainer-img04",class:"productList-img04"
-          .productList-body
-            .name
-              name
-            .details
-              %ul
-                %li 0000円
-                %li 
-                  = icon('fas', 'star', class: 'icon')
-                  .like 0
-              %h4 (税込)
+    = render 'layouts/items-contents'

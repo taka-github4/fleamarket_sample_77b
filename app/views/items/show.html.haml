@@ -2,19 +2,17 @@
   .itemContent
     .itemContent-top
       .itemContent-top__item
-        %h2.itemContent-top__item--name 
+        %h2.itemContent-top__item--name
           = @item.name
         .itemContent-top__item--photo
           %ul
             %li
-              = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/16/IMG_9072.JPG"
+              = image_tag @item.photos.first.image.url
               %ul
-                %li
-                  = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/7/a001.png"
-                %li
-                  = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/17/IMG_9069.JPG"
-                %li
-                  = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/9/a003.png"
+                %div.imagebox
+                  - @item.photos.each do |photo|
+                    %li
+                      = image_tag photo.image.url
         .itemContent-top__item--price
           %span
             ¥
@@ -24,6 +22,9 @@
               (税込)
             %span
               送料込み
+          %div
+          = button_tag type: 'submit', class: "buybutton" do
+            購入画面に進む
         .itemContent-top__item--explanatory
           = @item.description
         .itemContent-top__item--table
@@ -42,22 +43,26 @@
             %tr
               %th ブランド
               %td
+                = @item.brand
             %tr
               %th 商品のサイズ
               %td
             %tr
               %th 商品の状態
-              %td 新品/未使用
+              %td 
+                = ItemCondition.find(@item.item_condition_id).name
             %tr
               %th 配送料の負担
-              %td 送料込み（出品者負担）
+              %td
+                = Burden.find(@item.burden_id).name
             %tr
               %th 発送元の地域
               %td
-                = link_to '青森県', "#"
+                = Prefecture.find(@item.prefectures_id).name
             %tr
               %th 発送日の目安
-              %td 1-2日で発送
+              %td
+                = Days.find(@item.days_id).name
 
         .itemContent-top__item--option
           %ul
