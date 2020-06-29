@@ -87,41 +87,6 @@
       =link_to '#' do
         新規投稿商品
     = render 'layouts/items-contents'
-    -# .productLists
-    -#   .productList
-    -#     - @items.each do |item|
-    -#       -if item.purchaser_id == nil 
-    -#         =link_to '#' do
-    -#           .productList-img
-    -#             =image_tag item.photos.first.image.url
-    -#           .productList-body
-    -#             .name
-    -#               = item.name
-    -#             .details
-    -#               %ul
-    -#                 %li
-    -#                   = item.price
-    -#                 %li
-    -#                   = icon('fas', 'star', class: 'icon')
-    -#                   .like 0
-    -#               %h4 (税込)
-    -#       -else
-    -#         =link_to '#' do
-    -#           .productList-img
-    -#             =image_tag item.photos.first.image.url
-    -#             %label.product_buy 売り切れました
-    -#           .productList-body
-    -#             .name
-    -#               = item.name
-    -#             .details
-    -#               %ul
-    -#                 %li
-    -#                   = item.price
-    -#                 %li
-    -#                   = icon('fas', 'star', class: 'icon')
-    -#                   .like 0
-    -#               %h4 (税込)
-
 
 .pickupContainer.pickupContainer--lower
   .head
@@ -131,37 +96,3 @@
       =link_to '#' do
         アーカイバ
     = render 'layouts/items-contents'
-    -# .productLists
-    -#   .productList
-    -#     - @items.each do |item|
-    -#       -if item.purchaser_id == nil 
-    -#         =link_to '#' do
-    -#           .productList-img
-    -#             =image_tag item.photos.first.image.url
-    -#           .productList-body
-    -#             .name
-    -#               = item.name
-    -#             .details
-    -#               %ul
-    -#                 %li
-    -#                   = item.price
-    -#                 %li
-    -#                   = icon('fas', 'star', class: 'icon')
-    -#                   .like 0
-    -#               %h4 (税込)
-    -#       -else
-    -#         =link_to '#' do
-    -#           .productList-img
-    -#             =image_tag item.photos.first.image.url
-    -#             %label.product_buy 売り切れました
-    -#           .productList-body
-    -#             .name
-    -#               = item.name
-    -#             .details
-    -#               %ul
-    -#                 %li
-    -#                   = item.price
-    -#                 %li
-    -#                   = icon('fas', 'star', class: 'icon')
-    -#                   .like 0
-    -#               %h4 (税込)
