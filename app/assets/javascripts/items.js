@@ -1,7 +1,13 @@
 $(document).on('turbolinks:load', ()=> {
   const buildFileField = (targetIndex,count)=> {
     var width = 570 - ((count % 5) * 114)
-    const html = `<label for="item_photos_attributes_${targetIndex}_image" id="${targetIndex}"><div class="image__addbox--add" style="width:${width}px;"><i class="fas fa-camera"></i></div>
+    const html = `<label for="item_photos_attributes_${targetIndex}_image" class="image__add" id="${targetIndex}">
+                    <div class="image__addbox--add" style="width:${width}px;">
+                      <div class="image__addbox--textbox">
+                        <i class="fas fa-camera"></i>
+                        <p>画像を追加</p>
+                      </div>
+                    </div>
                     <div data-index="${targetIndex}" class="js-file_group">
                       <input class="js-file" type="file" style="display:none;" name="item[photos_attributes][${targetIndex}][image]" id="item_photos_attributes_${targetIndex}_image">
                     </div>
@@ -9,7 +15,7 @@ $(document).on('turbolinks:load', ()=> {
     return html;
   }
   const buildImg = (index, url)=> {
-    const html = `<div class="buildImg"><img data-index="${index}" src="${url}" width="112px" height="112px"><div class="js-remove">削除</div></div>`;
+    const html = `<div class="buildImg"><div class="buildImg__edit">編集</div><img data-index="${index}" src="${url}" width="112px" height="112px"><div class="js-remove">削除</div></div>`;
     return html;
   }
 
@@ -18,12 +24,12 @@ $(document).on('turbolinks:load', ()=> {
     return html;
   }
   const buildSelect = (insertHTML)=>{
-    const html = `<div class="category__children"><select id="children_category"><option value="">選択してください</option>${insertHTML}</select></div>`
+    const html = `<div id="category__children"><select id="item_category_id" name="item[category_id]" ><option value>選択してください</option>${insertHTML}</select></div>`
     return html;
   }
 
   const buildSelectGrandChild = (insertHTML)=>{
-    const html = `<div class="category__grandchildren"><select name="item[category_id]" id="grandchildren_category"><option value="">選択してください</option>${insertHTML}</select></div>`
+    const html = `<div id="category__grandchildren"><select id="item_category_id" name="item[category_id]" ><option value>選択してください</option>${insertHTML}</select></div>`
     return html;
   }
 
@@ -48,62 +54,55 @@ $(document).on('turbolinks:load', ()=> {
     return html;
   }
 
-  let fileIndex = [1,2,3,4,5,6,7,8,9,10];
-  lastIndex = $('.js-file_group:last').data('index');
-  fileIndex.splice(0, lastIndex);
-  $('.hidden-destroy').hide();
 
   $('#photo-box').on('change', '.js-file', function(e) {
     const targetIndex = $(this).parent().data('index');
     const file = e.target.files[0];
     const blobUrl = window.URL.createObjectURL(file);
-
     var fix_box = $('#image-boxes').children().length
     if (fix_box !== 1){
       for(var i = 1;  i < fix_box;  i++){
         $('#image-box:last').remove();
       }
-
     }
-
     if (img = $(`img[data-index="${targetIndex}"]`)[0]) {
       img.setAttribute('src', blobUrl);
     } else {
+      var lastLabelFor =$('#image-box').children('.image__add:last').attr('for');
+      var nextId = parseInt(lastLabelFor.replace(/[^0-9]/g, '')) + 1
       $('div').find('.image__startbox').remove();
       $('div').find('.image__addbox--add').remove();
-      if (typeof targetIndex === "undefined"){
-        $('.image__add').append(buildImg(0, blobUrl))
-      } else {
         $('#' + targetIndex).append(buildImg(targetIndex, blobUrl));
-      }
-      var nowImageboxCount = $('#image-box').children().length;
+      var nowImageboxCount = $('#image-box').children('.image__add').length;
       if (nowImageboxCount < 10){
-      $('#image-box').append(buildFileField(fileIndex[0],nowImageboxCount));
+      $('#image-box').append(buildFileField(nextId,nowImageboxCount));
       }
-      fileIndex.shift();
-      fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
     }
   });
 
   $('#image-box').on('click', '.js-remove', function(e) {
     e.preventDefault();
-    const targetIndex = $(this).parent().data('index')
     var targetId = $(this).parent().parent().attr('id')
+    var lastLabelFor =$('#image-box').children('.image__add:last').attr('for');
+    var nextId = parseInt(lastLabelFor.replace(/[^0-9]/g, '')) + 1
     $(this).parent().parent().remove();
-    $(`img[data-index="${targetIndex}"]`).remove();
     $('#image-box').find('#' + targetId).remove();
     $('div').find('.image__addbox--add').parent().remove();
-    var nowImageboxCount = $('#image-box').children().length;
-    $('#image-box').append(buildFileField(targetId,nowImageboxCount));
+    var destroyCheck = $(`input[data-index="${targetId}"].destroyCheck`);
+    if (destroyCheck){
+      destroyCheck.prop('checked', true)
+    };
+    var nowImageboxCount = $('#image-box').children('.image__add').length;
+    $('#image-box').append(buildFileField(nextId,nowImageboxCount));
     });        
 
   $(".product__text__field--wide").on("keyup", function () {
     $(".count-up").text($(this).val().length + '/1000');
   });
 
-  $('#category-box').on('change','#item_category_id',function(){
-    $('#children_category').remove();
-    $('#grandchildren_category').remove();
+  $(document).on('change','#category__parents select',function(){
+    $('#category__children').remove();
+    $('#category__grandchildren').remove();
     $('.product-content__detail__size').remove();
     var parents_id = $(this).val();
     if (parents_id){
@@ -114,8 +113,8 @@ $(document).on('turbolinks:load', ()=> {
         dataType: 'json'
       })
       .done(function(children) {
-        $('#children_category').remove();
-        $('#grandchildren_category').remove();
+        $('#category__children').remove();
+        $('#category__grandchildren').remove();
         $('.product-content__detail__size').remove();
         var insertHTML = '';
         $.each(children, function(i,child) {
@@ -129,9 +128,9 @@ $(document).on('turbolinks:load', ()=> {
     }
   });
 
-  $('#category-box').on('change','#children_category',function(){
+  $(document).on('change','#category__children select',function(){
+    $('#category__grandchildren').remove();
     $('.product-content__detail__size').remove();
-    $('#grandchildren_category').remove();
     var parents_id = $(this).val()
     if (parents_id){
       $.ajax({
@@ -141,7 +140,7 @@ $(document).on('turbolinks:load', ()=> {
         dataType: 'json'
       })
       .done(function(children) {
-        $('#grandchildren_category').remove();
+        $('#category__grandchildren').remove();
         $('.product-content__detail__size').remove();
         var insertHTML = '';
         $.each(children, function(i,child) {
@@ -156,7 +155,7 @@ $(document).on('turbolinks:load', ()=> {
     }
   })
 
-  $('#category-box').on('change','#grandchildren_category',function(){
+  $(document).on('change','#category__grandchildren select',function(){
     $('.product-content__detail__size').remove();
     var parents_id = $(this).val();
     if (parents_id && $('#item_category_id').val() <= 3 ){
