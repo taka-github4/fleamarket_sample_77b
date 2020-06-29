@@ -72,11 +72,7 @@ $(document).on('turbolinks:load', ()=> {
       var nextId = parseInt(lastLabelFor.replace(/[^0-9]/g, '')) + 1
       $('div').find('.image__startbox').remove();
       $('div').find('.image__addbox--add').remove();
-      // if (typeof targetIndex === 0){
-      //   $('.image__add').append(buildImg(0, blobUrl))
-      // } else {
         $('#' + targetIndex).append(buildImg(targetIndex, blobUrl));
-      // }
       var nowImageboxCount = $('#image-box').children('.image__add').length;
       if (nowImageboxCount < 10){
       $('#image-box').append(buildFileField(nextId,nowImageboxCount));
