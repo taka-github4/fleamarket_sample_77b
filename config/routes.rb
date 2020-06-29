@@ -14,7 +14,6 @@ Rails.application.routes.draw do
     end
   end
   resources :items, only: [:index, :show, :new, :create, :edit, :update] do
-    resources :photos
     collection do
       get 'children', defaults: { format: 'json' }
       get 'grandchildren', defaults: { format: 'json' }

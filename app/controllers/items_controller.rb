@@ -87,7 +87,6 @@ class ItemsController < ApplicationController
 
   def not_useritem
     if @item.user_id != current_user.id
-      flash[:alert] = "違うユーザーの商品です。"
       redirect_to root_url
     end
   end
