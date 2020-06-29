@@ -1,0 +1,67 @@
+.categoryMain {
+  padding: 25px 25px 50px 25px;
+  background-color: #f8f8f8;
+
+  h1 {
+    font-size: 22.5px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    padding-left: 250px;
+  }
+
+  .categoryList {
+    padding: 0 0px 25px 0px;
+    width: 900px;
+    background-color: #ffffff;
+    margin: 0 auto;
+
+    .parents {
+      display: flex;
+      align-content: flex-start; 
+      flex-direction: row;
+      flex-wrap: wrap;
+      
+      .parent {
+        background-color: #3CCACE;
+        height: 50px;
+        width: 100%;
+        padding: 0 20px 0 20px;
+      }
+
+      .parent a {
+        font-size: 22.5px;
+        font-weight: bold;
+        line-height: 50px;
+        color: #ffffff;
+      }
+
+      .childrens {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 20px;
+        padding-left: 20px;
+
+        .children a {
+          font-weight: bold;
+        }
+
+        .grandchildrens {
+          display: flex;
+          align-content: flex-start; 
+          flex-direction: row;
+          flex-wrap: wrap;
+          width: 850px;
+          margin: 20px 20px 20px 20px;
+
+          .grandchildren a{
+            color: #0099e8;
+            font-size: 16px;
+            margin-top: 8px;
+            margin-bottom: 8px;
+            margin-right: 8px;
+          }
+        }
+      }
+    }
+  }
+}

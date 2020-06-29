@@ -10,8 +10,6 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    @categorys = Category.all
-    @prefectures = Prefecture.all
   end
 
   def new

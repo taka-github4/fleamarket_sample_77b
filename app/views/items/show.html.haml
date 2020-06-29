@@ -31,16 +31,15 @@
           %table
             %tr
               %th 出品者
-              %td
-                =@item.user.nickname
+              %td= @item.user.nickname
             %tr
               %th カテゴリー
-              %td 
-                =link_to @categorys.find(@item.category_id).parent.parent.name
+              %td
+                = link_to @item.category.parent.parent.name, category_path(@item.category.parent.parent)
                 %br/
-                =link_to @categorys.find(@item.category_id).parent.name
+                = link_to @item.category.parent.name, category_path(@item.category.parent)
                 %br/
-                =link_to @categorys.find(@item.category_id).name
+                = link_to @item.category.name, category_path(@item.category)
             %tr
               %th ブランド
               %td
@@ -59,7 +58,7 @@
             %tr
               %th 発送元の地域
               %td
-                = link_to Prefecture.find(@item.prefectures_id).name, "#"
+                = Prefecture.find(@item.prefectures_id).name
             %tr
               %th 発送日の目安
               %td
