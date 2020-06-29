@@ -1,0 +1,38 @@
+.categoryShow {
+  padding: 50px 200px 25px 200px;
+  background-color: #f8f8f8;
+
+  .categoryNamelist {
+    display: flex;
+    align-content: flex-start; 
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    
+    a {
+      color: #0099e8;
+      font-size: 14px;
+      display:inline;
+      margin-right: 20px;
+    }
+  }
+
+  .categoryItem {
+    margin-bottom: 20px;
+
+    .categoryItemlist {
+
+      .name{
+        font-size: 22.5px;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .categoryItemtable {
+    width: 100%;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+  }
+}

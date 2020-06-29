@@ -1,0 +1,14 @@
+.categoryMain
+  %h1 カテゴリー一覧
+  .categoryList
+    .parents
+      - @parents.each do |parent|
+        .parent= link_to "#{parent.name}", category_path(parent)
+
+        .childrens
+          - parent.children.each do |child|
+            .children= link_to "#{child.name}", category_path(child)
+
+            .grandchildrens
+              - child.children.each do |grandchild|
+                .grandchildren= link_to "#{grandchild.name}", category_path(grandchild)

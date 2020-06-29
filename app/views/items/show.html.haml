@@ -2,7 +2,8 @@
   .itemContent
     .itemContent-top
       .itemContent-top__item
-        %h2.itemContent-top__item--name 味噌煮込みうどん
+        %h2.itemContent-top__item--name 
+          = @item.name
         .itemContent-top__item--photo
           %ul
             %li
@@ -16,27 +17,28 @@
                   = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/9/a003.png"
         .itemContent-top__item--price
           %span
-            ¥29
+            ¥
+            = @item.price
           .detail
             %span
               (税込)
             %span
               送料込み
         .itemContent-top__item--explanatory
-          aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+          = @item.description
         .itemContent-top__item--table
           %table
             %tr
               %th 出品者
-              %td hoge
+              %td= @item.user.nickname
             %tr
               %th カテゴリー
               %td
-                = link_to 'レディース', "#"
+                = link_to @item.category.parent.parent.name, "/categories/#{@item.category.parent.parent.id}"
                 %br/
-                = link_to 'トップス', "#"
+                = link_to @item.category.parent.name, "/categories/#{@item.category.parent.id}"
                 %br/
-                = link_to 'Tシャツ/カットソー(半袖/袖なし)', "#"
+                = link_to @item.category.name, "/categories/#{@item.category.id}"
             %tr
               %th ブランド
               %td

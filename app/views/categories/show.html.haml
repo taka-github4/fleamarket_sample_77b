@@ -1,0 +1,39 @@
+.categoryShow 
+  .categoryName
+    .categoryNamelist
+      - @categorylists.each do |category|
+        = link_to category.name, category_path(category)
+  .categoryItem
+    .categoryItemlist
+      .name
+        = "#{@category.name}の商品一覧"
+        .title__border
+      - if @items
+        %ul.lists
+  .categoryItemtable
+    .itemContent-bottom__items--list
+      = link_to "#" do
+        %figure.img
+          = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/11/a005.png"
+        .body
+          %h3.name 野菜
+          .details
+            %ul
+              %li 4423円
+              %li
+                %i.fa.fa-star.likeIcon
+                2
+            %p (税込)
+    .itemContent-bottom__items--list
+      = link_to "#" do
+        %figure.img
+          = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/13/a007.png"
+        .body
+          %h3.name かにみそ
+          .details
+            %ul
+              %li 1000円
+              %li
+                %i.fa.fa-star.likeIcon
+                0
+            %p (税込)
