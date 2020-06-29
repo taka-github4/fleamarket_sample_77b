@@ -31,8 +31,8 @@ class ItemsController < ApplicationController
 
   def edit
     @item.photos.new
-    @parent = Category.find(@item.category_id).parent.parent_id
-    @child = Category.find(@item.category_id).parent_id
+    @parent = @item.category.parent.parent_id
+    @child = @item.category.parent_id
     @parents = Category.where(ancestry: nil)
     @children = Category.where(ancestry: "#{@parent}")
     @grandchildren = Category.where(ancestry: "#{@parent}/#{@child}")
@@ -46,8 +46,8 @@ class ItemsController < ApplicationController
       flash.now[:alert] = @item.errors.full_messages
       @item = Item.find(params[:id])
       @item.photos.new
-      @parent = Category.find(@item.category_id).parent.parent_id
-      @child = Category.find(@item.category_id).parent_id
+      @parent = @item.category.parent.parent_id
+      @child = @item.category.parent_id
       @parents = Category.where(ancestry: nil)
       @children = Category.where(ancestry: "#{@parent}")
       @grandchildren = Category.where(ancestry: "#{@parent}/#{@child}")

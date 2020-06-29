@@ -1,5 +1,5 @@
 class Item < ApplicationRecord
-  has_many :categories
+  belongs_to :category
   has_many :photos
   belongs_to :user
   validates :photos, presence: true, allow_nil: true
