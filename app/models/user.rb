@@ -9,5 +9,6 @@ class User < ApplicationRecord
   validates_format_of :email, with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   has_one :address, dependent: :destroy
   has_many :items, dependent: :destroy
+  has_one :credit_card, dependent: :destroy
 
 end

@@ -7,33 +7,33 @@
   .userContents
     .userContent
       .userContent__sell
-        %a.link_button{:href => "#"}
+        = link_to new_item_path do
           出品する
     .userContent
       .userContent__bought
-        %a.link_button{:href => "#"}
+        = link_to '#' do
           購入した商品
     .userContent
       .userContent__like
-        %a.link_button{:href => "#"}
+        = link_to '#' do
           いいね！一覧
     .userContent
       .userContent__card
-        %a.link_button{:href => "/users/card"}
+        = link_to new_credit_card_path do
           クレジットカード情報
     .userContent
       .userContent__prof
-        %a.link_button{:href => "#"}
+        = link_to '#' do
           プロフィール
     .userContent
       .userContent__mail
-        %a.link_button{:href => "#"}
+        = link_to '#' do
           メール/パスワード
     .userContent
       .userContent__telephone
-        %a.link_button{:href => "#"}
+        = link_to '#'do
           電話番号の確認
     .userContent
       .userContent__logout
-        %a.link_button{:href => "/users/logout"}
+        = link_to logout_users_path do
           ログアウト

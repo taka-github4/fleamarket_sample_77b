@@ -20,8 +20,7 @@ FactoryBot.define do
     rand_purchaser_id = Random.rand(1 .. 99)
     purchaser_id{rand_purchaser_id}
     rand_category_id = Random.rand(159 .. 1000)
-    category_id{rand_category_id}
-    rand_user_id = Random.rand(1 .. 99)
-    user_id{rand_user_id}
+    category
+    user
   end
 end
