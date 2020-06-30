@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
   belongs_to :user
   belongs_to :category
-  has_many :photos
+  has_many :photos, dependent: :destroy
   belongs_to :user
   validates :photos, presence: true, allow_nil: true
   accepts_nested_attributes_for :photos, allow_destroy: true
