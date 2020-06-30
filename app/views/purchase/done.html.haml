@@ -1,0 +1,38 @@
+!!!
+%html
+  %head
+    %meta{content: "text/html; charset=UTF-8", "http-equiv": "Content-Type"}/
+    %title FleamarketSample77b
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    %link{href: "https://use.fontawesome.com/releases/v5.6.1/css/all.css", :rel => "stylesheet"}/
+.buyPage
+  .buyPage__logo
+    =link_to "#" do
+      = image_tag "logo/logo.png", size: '140x40', class: 'image'
+  .buyItem
+    .buyItem__confirmation
+      .confirmation
+        購入が完了しました
+    .buyItem__main
+    .buyItem__main__info
+      .info__image
+        = image_tag @item.photos.first.image.url
+      .info__detail
+        .name
+          #{@item.name}
+        %br
+        .postage
+          送料込み(税込) #{@item.price}円
+          %span.price
+    .buyItem__main__total-price
+      .total-price__table
+        .payment
+          支払い金額 #{@item.price}円
+        .total-price
+   
+      
+       
+

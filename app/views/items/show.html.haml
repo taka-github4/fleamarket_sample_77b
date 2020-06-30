@@ -23,8 +23,9 @@
             %span
               送料込み
           %div
-          = button_tag type: 'submit', class: "buybutton" do
-            購入画面に進む
+          = link_to "/purchase/#{@item.id}" do
+            .buybutton
+              購入画面に進む
         .itemContent-top__item--explanatory
           = @item.description
         .itemContent-top__item--table

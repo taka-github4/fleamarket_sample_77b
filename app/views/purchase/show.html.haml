@@ -19,41 +19,44 @@
     .buyItem__main
     .buyItem__main__info
       .info__image
-        = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/16/IMG_9072.JPG", size: '75x75', class: 'image'
+        = image_tag @item.photos.first.image.url
       .info__detail
         .name
-          焼きそば！！焼きそば！！
+          #{@item.name}
         %br
         .postage
-          送料込み(税込)
+          送料込み(税込) #{@item.price}円
           %span.price
-            ¥888,888,888
+            
     .buyItem__main__total-price
       .total-price__table
         .payment
-          支払い金額
+          支払い金額 #{@item.price}円
         .total-price
-          ¥50,000
     .buyItem__main__method
       .method__table
         %h3 支払い方法
         .update
           = link_to "変更する", "#", class: "update-btn"
         .info-number
-          **** **** **** 1234
+          = "**** **** **** " + @default_card_information.last4
           .info-date
-            有効期限 xx/xx
+            有効期限
+            - exp_month = @default_card_information.exp_month.to_s
+            - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
+            = exp_month + " / " + exp_year
     .buyItem__main__user-info
       .user-info__table              
         %h3 配送先
         .update
           = link_to "変更する", "#", class: "update-btn"
         .info-text
-          〒123-4321
+          〒#{@user.address.zip_code}
           %br
-          大阪府大阪市大阪区大阪町12-34
+          =@user.address.prefecture
+          =@user.address.city
+          =@user.address.house_number
           %br
-          一二三四五六
-      = form_for "#" do |form|
-        = button_tag type: 'submit', class: "btn" do
-          購入する
+          = form_tag(action: :pay, method: :post) do
+            %button 購入する
+
