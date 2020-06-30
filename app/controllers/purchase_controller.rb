@@ -3,7 +3,7 @@ class PurchaseController < ApplicationController
 
   def index
     @items = Item.includes(:images).order('created_at DESC')
-    card = CreditCard.where(user_id: current_user.id).first
+    card = CreditCard.find_by(user_id: current_user.id)
     索
     if card.blank?
       
@@ -20,7 +20,7 @@ class PurchaseController < ApplicationController
 
   def pay
     @item = Item.find(params[:id])
-    card = CreditCard.where(user_id: current_user.id).first
+    card = CreditCard.find_by(user_id: current_user.id)
     Payjp.api_key = ENV["PAYJP_ACCESS_KEY"]
     Payjp::Charge.create(
     :amount => @item.price,
@@ -31,8 +31,7 @@ class PurchaseController < ApplicationController
   end
   def show
     @item = Item.find(params[:id])
-    @user = User.find(current_user.id)
-    card = CreditCard.where(user_id: current_user.id).first
+    card = CreditCard.find_by(user_id: current_user.id)
     
     if card.blank?
       redirect_to controller: "credit_cards", action: "new"

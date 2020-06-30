@@ -2,7 +2,7 @@
   .productList
     - @items.each do |item|
       -if item.purchaser_id == nil 
-        =link_to "/items/#{item.id}" do
+        =link_to item do
           .productList-img
             =image_tag item.photos.first.image.url
           .productList-body

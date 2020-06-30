@@ -51,11 +51,11 @@
         .update
           = link_to "変更する", "#", class: "update-btn"
         .info-text
-          〒#{@user.address.zip_code}
+          〒#{zipoutput(current_user.address.zip_code)}
           %br
-          =@user.address.prefecture
-          =@user.address.city
-          =@user.address.house_number
+          =current_user.address.prefecture
+          =current_user.address.city
+          =current_user.address.house_number
           %br
           = form_tag(action: :pay, method: :post) do
             %button 購入する

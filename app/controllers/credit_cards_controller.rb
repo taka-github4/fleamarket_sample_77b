@@ -3,7 +3,7 @@ class CreditCardsController < ApplicationController
   require "payjp"
 
   def new
-    card = CreditCard.where(user_id: current_user.id)
+    card = CreditCard.find_by(user_id: current_user.id)
     redirect_to action: "show" if card.exists?
   end
 
@@ -30,7 +30,7 @@ class CreditCardsController < ApplicationController
   end
 
   def delete
-    card = CreditCard.where(user_id: current_user.id).first
+    card = CreditCard.find_by(user_id: current_user.id)
     if card.blank?
     else
       Payjp.api_key = ENV["PAYJP_ACCESS_KEY"]
@@ -42,7 +42,7 @@ class CreditCardsController < ApplicationController
   end
 
   def show
-    card = CreditCard.where(user_id: current_user.id).first
+    card = CreditCard.find_by(user_id: current_user.id)
     if card.blank?
       redirect_to action: "new" 
     else
