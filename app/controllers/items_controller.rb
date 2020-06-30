@@ -1,8 +1,8 @@
 class ItemsController < ApplicationController
   layout false,only: [:new,:create,:edit,:update]
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
-  before_action :set_item,only:[:edit,:update]
-  before_action :not_useritem,only:[:edit,:update]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update,:destroy]
+  before_action :set_item,only:[:edit,:update,:destroy]
+  before_action :not_useritem,only:[:edit,:update,:destroy]
 
   def index
     @items = Item.all.includes(:photos).order('created_at DESC').limit(4)
@@ -58,6 +58,9 @@ class ItemsController < ApplicationController
   end
 
   def destroy
+    @item.destroy
+    flash[:notice] = "商品を削除しました。"
+    redirect_to root_url
   end
 
   def children

@@ -74,6 +74,10 @@
               = link_to "#" do
                 %i.fa.fa-flag
                 不適切な商品の通報
+        -if current_user && @item.user_id == current_user.id
+          =link_to item_path(@item), method: :delete  do
+            .deletebutton
+              商品を削除する。
       .itemContent-top__comment
         = form_with url: "#" do |form|
           = form.text_area :kari , class: "textarea"
