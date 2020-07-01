@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  layout false,only: [:new,:create,:edit,:update]
+  layout 'no-header',only: [:new,:create,:edit,:update]
   before_action :authenticate_user!, only: [:new, :create, :edit, :update,:destroy]
   before_action :set_item,only:[:edit,:update,:destroy]
   before_action :not_useritem,only:[:edit,:update,:destroy]

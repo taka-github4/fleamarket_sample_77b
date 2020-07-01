@@ -1,7 +1,7 @@
 class CreditCardsController < ApplicationController
-
   require "payjp"
-
+  layout 'no-header',only: [:new,:show]
+  before_action :authenticate_user!
   def new
     card = CreditCard.find_by(user_id: current_user.id)
     redirect_to action: "show" if card

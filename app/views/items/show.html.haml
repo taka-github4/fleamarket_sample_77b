@@ -24,7 +24,7 @@
               送料込み
           %div
           -if current_user && @item.purchaser_id.nil? && @item.user_id != current_user.id
-            = link_to purchase_index_path(@item) do
+            = link_to purchase_path(@item) do
               .buybutton
                 購入画面に進む
         .itemContent-top__item--explanatory

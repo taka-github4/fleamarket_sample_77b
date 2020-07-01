@@ -18,9 +18,8 @@ Rails.application.routes.draw do
       get 'grandchildren', defaults: { format: 'json' }
     end
   end
-  resources :purchase, only: [:show, :index,] do
+  resources :purchase, only: [:show] do
     member do
-      get 'index', to: 'purchase#index'
       post 'pay', to: 'purchase#pay'
       get 'done', to: 'purchase#done'
     end
