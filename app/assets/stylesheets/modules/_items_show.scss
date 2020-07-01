@@ -30,26 +30,24 @@
 
         &--photo ul {
           display: flex;
-          justify-content: center;
           margin-top: 10px;
 
           li {
             display: flex;
             flex-direction: column;
-            align-items: center;
             margin: 0 auto;
 
             img {
               object-fit: cover;
               height: 346px;
-              width: 560px;
+              width: 610px;
             }
           }
 
           ul li {
             float: left;
-            max-width: 25%;
-            margin-right: 1px;
+            max-width: 100%;
+            margin: 1px 1px;
           
             img {
               object-fit: cover;
