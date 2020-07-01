@@ -9,9 +9,9 @@
             %li
               = image_tag @item.photos.first.image.url
               %ul
-                %li
-                  %div.imagebox
-                    - @item.photos.each do |photo|
+                %div.imagebox
+                  - @item.photos.each do |photo|
+                    %li
                       = image_tag photo.image.url
         .itemContent-top__item--price
           %span
