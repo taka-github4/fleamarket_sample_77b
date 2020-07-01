@@ -1,176 +1,165 @@
-!!!
-%html
-  %head
-    %meta{content: "text/html; charset=UTF-8", "http-equiv": "Content-Type"}/
-    %title FleamarketSample77b
-    = csrf_meta_tags
-    = csp_meta_tag
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
-    = javascript_include_tag 'application'
-  %body
-    = render 'layouts/notifications'
-    .sell-container
-      .sell-container-header
-        =image_tag 'logo/logo.png',alt:"logo",class:"frm"
-      .sell-container-main
-        .sell-container-main__block
-          = form_for @item,{multipart: :true} do |f|
-            .product-content__drop
-              .product-content__drop__name
-                %label 商品画像
+.sell-container
+  .sell-container-header
+    =image_tag 'logo/logo.png',alt:"logo",class:"frm"
+  .sell-container-main
+    .sell-container-main__block
+      = form_for @item,{multipart: :true} do |f|
+        .product-content__drop
+          .product-content__drop__name
+            %label 商品画像
+            %span.require 必須
+            %p 最大10枚までアップロードできます
+          .container
+            #photo-box.drop-box
+              #image-boxes
+                #image-box
+                  -@item.photos.each do |photo|
+                    =f.fields_for :photos,photo do |p|
+                      -if p.index != (@item.photos.length - 1)
+                        =p.label :image,class:"image__add",data:{index:"#{p.index}"},id:"#{p.index}" do
+                          = p.file_field :image,class:'js-file', style:"display:none;"
+                          .buildImg
+                            .buildImg__edit
+                              編集
+                            =image_tag photo.image.url ,data:{index:"#{p.index}"},size:"112x112" if photo.image?
+                            .js-remove
+                              削除
+                        =p.check_box :_destroy,data:{ index: p.index },class:"destroyCheck",style:"display:none;"
+                      - elsif @item.photos.length < 10
+                        =p.label :image,{class:"image__add",data:{index:"#{p.index}"},id:"#{p.index}"} do
+                          .image__addbox--add{style:"width:#{570 - ((p.index % 5) * 114)}px;"}
+                            .image__addbox--textbox
+                              = icon('fas', 'camera')
+                              %p 画像を追加
+                          .js-file_group{data:{index:"#{p.index}"}}
+                          =p.file_field :image,{class:"js-file",style:"display:none;",name:"item[photos_attributes][#{p.index}][image]",id:"item_photos_attributes_#{p.index}_image"}
+        .product-content__name
+          .product-content__name__name
+            %label
+              商品名
+              %span.require 必須
+            %div
+              = f.text_field :name,{class: "product__text__field",placeholder:"商品名（必須 40文字まで)"}
+          .product-content__name__info
+            %label
+              商品説明
+              %span.require 必須
+            %div
+              = f.text_area :description,{class: "product__text__field--wide",placeholder:"商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"}
+            .count-up 
+              0/1000
+        .product-content__detail
+          %h2.sell-content 商品の詳細
+          .product-content__detail__name
+            %label
+              カテゴリー
+              %span.require 必須
+            #category-box
+              #category__parents
+                = f.collection_select :category_id, @parents,:id ,:name,{include_blank: "選択してください",class:"product__text__field",selected:@parent}
+              -if @item.category_id
+                #category__children
+                  = f.collection_select :category_id, @children,:id ,:name,{include_blank: "選択してください",class:"product__text__field",selected:@child}
+                #category__grandchildren
+                  = f.collection_select :category_id, @grandchildren,:id ,:name,{include_blank: "選択してください",class:"product__text__field"}
+              -if @item.size_id
+                .product-content__detail__size
+                  %label
+                    サイズ
+                    %span.require--gray 任意
+                  %div
+                    =f.collection_select(:size_id, Size.all, :id, :name,{include_blank: "選択してください",class:"product__text__field"} )
+          .product-content__detail__info
+            %label
+              ブランド
+              %span.require--gray 任意
+            %div
+              = f.text_field :brand,{class: "product__text__field",placeholder:"例) シャネル"}
+          .product-content__detail__status
+            %label
+              商品の状態
+              %span.require 必須
+            %div
+              =f.collection_select(:item_condition_id, ItemCondition.all, :id, :name,{include_blank: "選択してください",class:"product__text__field"} )
+        .product-content__delivery
+          %h3.sell-content 
+            配送について
+            = link_to "#" do 
+              %i.far.fa-question-circle 
+          .product-content__delivery__name
+            %label
+              配送料の負担
+              %span.require 必須
+            %div
+              =f.collection_select(:burden_id, Burden.all, :id, :name,{include_blank: "選択してください",class:"product__text__field"} )
+          .product-content__delivery__info
+            %label
+              発送元の地域
+              %span.require 必須
+            %div
+              =f.collection_select(:prefectures_id, Prefecture.all, :id, :name,{include_blank: "選択してください",class:"product__text__field"} )
+            .product-content__delivery__days
+            %label
+              発送までの日数
+              %span.require 必須
+            %div
+              =f.collection_select(:days_id, Days.all, :id, :name,{include_blank: "選択してください",class:"product__text__field"} )
+        .product-content__price
+          %h4.sell-content 
+            価格（¥300〜9,999,999)
+            = link_to "#" do 
+              %i.far.fa-question-circle 
+          .product-content__price__text
+            %ul
+              %li
+                %label 販売価格
                 %span.require 必須
-                %p 最大10枚までアップロードできます
-              .container
-                #photo-box.drop-box
-                  #image-boxes
-                    #image-box
-                      -@item.photos.each do |photo|
-                        =f.fields_for :photos,photo do |p|
-                          -if p.index != (@item.photos.length - 1)
-                            =p.label :image,class:"image__add",data:{index:"#{p.index}"},id:"#{p.index}" do
-                              = p.file_field :image,class:'js-file', style:"display:none;"
-                              .buildImg
-                                .buildImg__edit
-                                  編集
-                                =image_tag photo.image.url ,data:{index:"#{p.index}"},size:"112x112" if photo.image?
-                                .js-remove
-                                  削除
-                            =p.check_box :_destroy,data:{ index: p.index },class:"destroyCheck",style:"display:none;"
-                          - elsif @item.photos.length < 10
-                            =p.label :image,{class:"image__add",data:{index:"#{p.index}"},id:"#{p.index}"} do
-                              .image__addbox--add{style:"width:#{570 - ((p.index % 5) * 114)}px;"}
-                                .image__addbox--textbox
-                                  = icon('fas', 'camera')
-                                  %p 画像を追加
-                              .js-file_group{data:{index:"#{p.index}"}}
-                              =p.file_field :image,{class:"js-file",style:"display:none;",name:"item[photos_attributes][#{p.index}][image]",id:"item_photos_attributes_#{p.index}_image"}
-            .product-content__name
-              .product-content__name__name
-                %label
-                  商品名
-                  %span.require 必須
-                %div
-                  = f.text_field :name,{class: "product__text__field",placeholder:"商品名（必須 40文字まで)"}
-              .product-content__name__info
-                %label
-                  商品説明
-                  %span.require 必須
-                %div
-                  = f.text_area :description,{class: "product__text__field--wide",placeholder:"商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"}
-                .count-up 
-                  0/1000
-            .product-content__detail
-              %h2.sell-content 商品の詳細
-              .product-content__detail__name
-                %label
-                  カテゴリー
-                  %span.require 必須
-                #category-box
-                  #category__parents
-                    = f.collection_select :category_id, @parents,:id ,:name,{include_blank: "選択してください",class:"product__text__field",selected:@parent}
-                  -if @item.category_id
-                    #category__children
-                      = f.collection_select :category_id, @children,:id ,:name,{include_blank: "選択してください",class:"product__text__field",selected:@child}
-                    #category__grandchildren
-                      = f.collection_select :category_id, @grandchildren,:id ,:name,{include_blank: "選択してください",class:"product__text__field"}
-                  -if @item.size_id
-                    .product-content__detail__size
-                      %label
-                        サイズ
-                        %span.require--gray 任意
-                      %div
-                        =f.collection_select(:size_id, Size.all, :id, :name,{include_blank: "選択してください",class:"product__text__field"} )
-              .product-content__detail__info
-                %label
-                  ブランド
-                  %span.require--gray 任意
-                %div
-                  = f.text_field :brand,{class: "product__text__field",placeholder:"例) シャネル"}
-              .product-content__detail__status
-                %label
-                  商品の状態
-                  %span.require 必須
-                %div
-                  =f.collection_select(:item_condition_id, ItemCondition.all, :id, :name,{include_blank: "選択してください",class:"product__text__field"} )
-            .product-content__delivery
-              %h3.sell-content 
-                配送について
-                = link_to "#" do 
-                  %i.far.fa-question-circle 
-              .product-content__delivery__name
-                %label
-                  配送料の負担
-                  %span.require 必須
-                %div
-                  =f.collection_select(:burden_id, Burden.all, :id, :name,{include_blank: "選択してください",class:"product__text__field"} )
-              .product-content__delivery__info
-                %label
-                  発送元の地域
-                  %span.require 必須
-                %div
-                  =f.collection_select(:prefectures_id, Prefecture.all, :id, :name,{include_blank: "選択してください",class:"product__text__field"} )
-                .product-content__delivery__days
-                %label
-                  発送までの日数
-                  %span.require 必須
-                %div
-                  =f.collection_select(:days_id, Days.all, :id, :name,{include_blank: "選択してください",class:"product__text__field"} )
-            .product-content__price
-              %h4.sell-content 
-                価格（¥300〜9,999,999)
-                = link_to "#" do 
-                  %i.far.fa-question-circle 
-              .product-content__price__text
-                %ul
-                  %li
-                    %label 販売価格
-                    %span.require 必須
-                %p
-                  %label.mark ¥
-                  = f.text_field :price,{class:"product__num__field",placeholder: "0"}
-              .fee
-                .fee__left 
-                  %span 販売手数料（10%）
-                .fee__right 
-                  %label ー
-              .profit
-                .profit__left
-                  %span 販売利益
-                .profit__right
-                  %label ー
-            .sell__block__form__btn
-              %div
-                = f.submit"編集する",{class: "btn-green"} 
-              %div
-              = link_to root_url do 
-                もどる
-          .product-content__caution
-            .caution-text
-              %div
-                %p
-                  禁止されている
-                  =link_to "行為","#" 
-                  および
-                  =link_to "出品物","#" 
-                  を必ずご確認ください。
-                  =link_to "偽ブランド品","#"
-                  や
-                  =link_to "盗品物","#"
-                  などの販売は犯罪であり、法律により処罰される可能性があります。 また、出品をもちまして
-                  =link_to "加盟店規約","#"
-                  に同意したことになります。
-                  
-      .footer
-        .footer__content
-          .footer__content__main
-            %ul.footer__lists
-              %li.footer__list
-                プライバシーポリシー
-              %li.footer__list
-                フリマ利用規約
-              %li.footer__list
-                特定商取引に関する表記
-          .logo
-            =image_tag 'logo/logo.png',alt:"logo",class:"frm"
-          %p.footer__copyright
-            © 2020 FURIMA
+            %p
+              %label.mark ¥
+              = f.text_field :price,{class:"product__num__field",placeholder: "0"}
+          .fee
+            .fee__left 
+              %span 販売手数料（10%）
+            .fee__right 
+              %label ー
+          .profit
+            .profit__left
+              %span 販売利益
+            .profit__right
+              %label ー
+        .sell__block__form__btn
+          %div
+            = f.submit"編集する",{class: "btn-green"} 
+          %div
+          = link_to root_url do 
+            もどる
+      .product-content__caution
+        .caution-text
+          %div
+            %p
+              禁止されている
+              =link_to "行為","#" 
+              および
+              =link_to "出品物","#" 
+              を必ずご確認ください。
+              =link_to "偽ブランド品","#"
+              や
+              =link_to "盗品物","#"
+              などの販売は犯罪であり、法律により処罰される可能性があります。 また、出品をもちまして
+              =link_to "加盟店規約","#"
+              に同意したことになります。
+              
+  .footer
+    .footer__content
+      .footer__content__main
+        %ul.footer__lists
+          %li.footer__list
+            プライバシーポリシー
+          %li.footer__list
+            フリマ利用規約
+          %li.footer__list
+            特定商取引に関する表記
+      .logo
+        =image_tag 'logo/logo.png',alt:"logo",class:"frm"
+      %p.footer__copyright
+        © 2020 FURIMA
