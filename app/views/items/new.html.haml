@@ -11,7 +11,8 @@
     = render 'layouts/notifications'
     .sell-container
       .sell-container-header
-        =image_tag 'logo/logo.png',alt:"logo",class:"frm"
+        =link_to root_url do
+          =image_tag 'logo/logo.png',alt:"logo",class:"frm"
       .sell-container-main
         .sell-container-main__block
           = form_for @item,{multipart: :true} do |f|
@@ -118,7 +119,7 @@
                   %label ー
             .sell__block__form__btn
               %div
-                = f.submit"出品する",{class: "btn-red"} 
+                = f.submit"出品する",{class: "btn-green"} 
               %div
               = link_to root_url do 
                 もどる
@@ -149,6 +150,7 @@
               %li.footer__list
                 特定商取引に関する表記
           .logo
-            =image_tag 'logo/logo.png',alt:"logo",class:"frm"
+            =link_to root_url do
+              =image_tag 'logo/logo.png',alt:"logo",class:"frm"
           %p.footer__copyright
             © 2020 FURIMA

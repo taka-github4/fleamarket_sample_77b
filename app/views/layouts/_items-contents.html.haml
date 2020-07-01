@@ -18,7 +18,7 @@
                   .like 0
               %h4 (税込)
       -else
-        =link_to "/items/#{item.id}" do
+        =link_to item_path(item) do
           .productList-img
             =image_tag item.photos.first.image.url
             %label.product_buy 売り切れました
