@@ -4,7 +4,7 @@ class CreditCardsController < ApplicationController
 
   def new
     card = CreditCard.find_by(user_id: current_user.id)
-    redirect_to action: "show" if card.exists?
+    redirect_to action: "show" if card
   end
 
   def pay
@@ -23,7 +23,6 @@ class CreditCardsController < ApplicationController
         
         redirect_to action: "show"
       else
-        flash.now[:notice]=@card.errors.full_messages
         redirect_to action: "pay"
       end
     end

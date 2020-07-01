@@ -84,7 +84,7 @@
             font-size: 18px;
             border-radius: 100px;
             cursor: pointer;
-            margin: 0 auto;
+            margin: 20px auto 0;
           }
         }
         
@@ -149,6 +149,18 @@
               text-decoration: none;
             }
           }
+          .editbutton{
+            margin: 20px auto 0;
+            text-align: center;
+            line-height: 48px;
+            background: #3CCACE;
+            border: 1px solid #3CCACE;
+            color: #fff;
+            width: 60%;
+            font-size: 18px;
+            border-radius: 100px;
+            cursor: pointer;
+          }
           .deletebutton{
             margin: 20px auto 0;
             text-align: center;
@@ -162,7 +174,7 @@
             cursor: pointer;
           }
       }
-
+      
       &__comment {
         background-color: #ffffff;
         padding: 24px;

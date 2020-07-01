@@ -1,5 +1,6 @@
 .logout
   .logout__box
     .logout__box-btn
-      %a.link_button{:href => "#"}
-        ログアウト
+      = link_to destroy_user_session_path, method: :delete do
+        .link_button
+          ログアウト

@@ -9,9 +9,9 @@
             %li
               = image_tag @item.photos.first.image.url
               %ul
-                %div.imagebox
-                  - @item.photos.each do |photo|
-                    %li
+                %li
+                  %div.imagebox
+                    - @item.photos.each do |photo|
                       = image_tag photo.image.url
         .itemContent-top__item--price
           %span
@@ -23,16 +23,18 @@
             %span
               送料込み
           %div
-          = link_to "/purchase/#{@item.id}" do
-            .buybutton
-              購入画面に進む
+          -if current_user && @item.purchaser_id.nil? && @item.user_id != current_user.id
+            = link_to purchase_index_path(@item) do
+              .buybutton
+                購入画面に進む
         .itemContent-top__item--explanatory
           = @item.description
         .itemContent-top__item--table
           %table
             %tr
               %th 出品者
-              %td= @item.user.nickname
+              %td
+                = @item.user.nickname
             %tr
               %th カテゴリー
               %td
@@ -44,10 +46,13 @@
             %tr
               %th ブランド
               %td
-                = @item.brand
+                - if @item.brand
+                  = @item.brand
             %tr
               %th 商品のサイズ
               %td
+                - if @item.size_id
+                  = Size.find(@item.size_id).name
             %tr
               %th 商品の状態
               %td 
@@ -75,10 +80,13 @@
               = link_to "#" do
                 %i.fa.fa-flag
                 不適切な商品の通報
-        -if current_user && @item.user_id == current_user.id
+        -if current_user && @item.purchaser_id.nil? && @item.user_id == current_user.id
+          =link_to edit_item_path(@item) do
+            .editbutton
+              商品を編集する
           =link_to item_path(@item), method: :delete  do
             .deletebutton
-              商品を削除する。
+              商品を削除する
       .itemContent-top__comment
         = form_with url: "#" do |form|
           = form.text_area :kari , class: "textarea"
@@ -89,13 +97,15 @@
     .itemContent-bottom
       %ul.itemContent-bottom__link
         %li.itemContent-bottom__link--left
-          = link_to "#" do
-            %i.fa.fa-angle-left
-            %span 前の商品
+          - if @item.previous.present?
+            = link_to item_path(@item.previous.id) do
+              %i.fa.fa-angle-left
+              前の商品
         %li.itemContent-bottom__link--right
-          = link_to "#" do
-            %span 後ろの商品
-            %i.fa.fa-angle-right
+          - if @item.next.present?
+            = link_to item_path(@item.next.id) do
+              後ろの商品
+              %i.fa.fa-angle-right
     .itemContent-bottom__related
       = link_to 'レディースをもっと見る', "#"
     .itemContent-bottom__items
