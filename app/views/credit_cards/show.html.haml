@@ -12,4 +12,6 @@
         = form_tag(delete_credit_cards_path, method: :post, id: 'charge-form',  name: "inputForm") do
           %input{ type: "hidden", name: "card_id", value: "" }
           %button 削除する
+        .topLink
+          = link_to "TOPへ戻る", root_url
 

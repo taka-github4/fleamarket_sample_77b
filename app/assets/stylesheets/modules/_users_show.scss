@@ -111,6 +111,14 @@
     background-color: white;
     padding-top: 30px;
     box-shadow: 0 0 5px rgba(black,0.2);
+    .topLink {
+      margin-top: 15px;
+      text-align: center;
+      cursor: pointer;
+     }
+     a{
+      color: #3CCACE;
+     }
     &__content{
       width: 350px;
       height: 100px;
