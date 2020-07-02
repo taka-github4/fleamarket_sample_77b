@@ -1,9 +1,19 @@
+- breadcrumb :category_index
+= render "layouts/breadcrumbs"
 .categoryMain
   %h1 カテゴリー一覧
+  .parentLinks
+    - @parents.each do |parent|
+      =link_to anchor: "#{parent.id}" do
+        %button 
+          = "#{parent.name}"
+      .blank
   .categoryList
     .parents
       - @parents.each do |parent|
-        .parent= link_to "#{parent.name}", category_path(parent)
+        .parent{id: parent.id}= link_to "#{parent.name}", category_path(parent)
+        .all
+          =link_to "すべて",category_path(parent)
 
         .childrens
           - parent.children.each do |child|
@@ -12,3 +22,6 @@
             .grandchildrens
               - child.children.each do |grandchild|
                 .grandchildren= link_to "#{grandchild.name}", category_path(grandchild)
+
+        .returnTop
+          =link_to "上に戻る",categories_path

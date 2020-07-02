@@ -94,7 +94,10 @@
       font-weight: normal;
     }
     .new_user{
-      padding: 20px 40px 64px;
+      padding: 20px 30.5px 64px 59.5px;
+    }
+    .new_address{
+      padding: 20px 30.5px 64px 59.5px;
     }
     .field_with_errors {
       display: contents;
@@ -326,7 +329,7 @@
     }
     .actions-next{
       max-width: 343px;
-      margin: 60px 120px 0 160px;
+      margin: 60px 120px 0 120px;
       text-align: center;
       padding-bottom: 20px;
       display: block;

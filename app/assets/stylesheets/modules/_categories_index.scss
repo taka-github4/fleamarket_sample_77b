@@ -9,6 +9,32 @@
     padding-left: 250px;
   }
 
+  .parentLinks {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 250px 0 300px;
+
+    a {
+      height: 45px;
+      button {
+        padding: 10px 20px;
+        background-color: #ffffff;
+        border: 1px solid #000000;
+        cursor : pointer;
+      }
+      button:hover{
+        background: #3CCACE;
+        color: #ffffff;
+        border: 1px solid #ffffff;
+      }
+    }
+
+    .blank {
+      width: 2.7%;
+      height: 70px;
+    }
+  }
+
   .categoryList {
     padding: 0 0px 25px 0px;
     width: 900px;
@@ -20,12 +46,28 @@
       align-content: flex-start; 
       flex-direction: row;
       flex-wrap: wrap;
+
+      .all {
+        margin: 15px 0 0 20px;
+        a {
+          color: #0099e8;
+          font-size: 16px;
+        }
+      }
+      .returnTop {
+        margin: 0 0 15px 20px;
+        a {
+          color: #ea352e;
+          font-size: 18px;
+          font-weight: bold;
+        }
+      }
       
       .parent {
         background-color: #3CCACE;
         height: 50px;
         width: 100%;
-        padding: 0 20px 0 20px;
+        padding: 0 15px 0 15px;
       }
 
       .parent a {
@@ -38,7 +80,7 @@
       .childrens {
         display: flex;
         flex-wrap: wrap;
-        margin-top: 20px;
+        margin-top: 15px;
         padding-left: 20px;
 
         .children a {
