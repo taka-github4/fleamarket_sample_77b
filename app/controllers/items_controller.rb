@@ -3,16 +3,15 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update,:destroy]
   before_action :set_item,only:[:edit,:update,:destroy]
   before_action :not_useritem,only:[:edit,:update,:destroy]
+  before_action :set_parents,except: :destroy
 
   def index
     @items = Item.all.includes(:photos).order('created_at DESC').limit(4)
-    @parents = Category.where(ancestry: nil)
   end
 
   def show
     @item = Item.find(params[:id])
-    @parents = Category.where(ancestry: nil)
-    @category = Category.find(@item.category_id)
+    @category = @item.category
     @items = @category.set_items
     @items = @items.order("created_at DESC").limit(6)
   end
@@ -20,7 +19,6 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
     @item.photos.new
-    @parents = Category.where(ancestry: nil)
   end
 
   def create
@@ -30,7 +28,6 @@ class ItemsController < ApplicationController
       redirect_to root_path
     else
       @item.photos.new
-      @parents = Category.where(ancestry: nil)
       flash.now[:alert] = @item.errors.full_messages
       render :new
     end
@@ -40,7 +37,6 @@ class ItemsController < ApplicationController
     @item.photos.new
     @parent = @item.category.parent.parent_id
     @child = @item.category.parent_id
-    @parents = Category.where(ancestry: nil)
     @children = Category.where(ancestry: "#{@parent}")
     @grandchildren = Category.where(ancestry: "#{@parent}/#{@child}")
   end
@@ -55,7 +51,6 @@ class ItemsController < ApplicationController
       @item.photos.new
       @parent = @item.category.parent.parent_id
       @child = @item.category.parent_id
-      @parents = Category.where(ancestry: nil)
       @children = Category.where(ancestry: "#{@parent}")
       @grandchildren = Category.where(ancestry: "#{@parent}/#{@child}")
       render :new
@@ -100,5 +95,10 @@ class ItemsController < ApplicationController
       redirect_to root_url
     end
   end
+
+  def set_parents
+    @parents = Category.where(ancestry: nil)
+  end
+
 end
 
