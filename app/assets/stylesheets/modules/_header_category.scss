@@ -1,0 +1,75 @@
+.headerCategory {
+  display: flex;
+  height:  1px;
+  width: 850px;
+
+  > li {
+    width: 25.94%;
+  }
+
+  li:hover {
+
+    a {
+      background: #ffffff;
+    }
+
+    > ul > li {
+      height: 50px;
+      overflow: visible;
+    }
+  }
+  
+  li {
+    list-style: none;
+    position: relative;
+
+    a {
+      background: #ffffff;
+      color: #333;
+      display: block;
+      height: 50px;
+      line-height: 46px;
+      text-align: center;
+      text-decoration: none;
+      width: 150px;
+      font-size: 14px;
+    }
+
+    li {
+      height: 0;
+      overflow: hidden;
+      z-index: 10;
+
+      a {
+        border-top: 1px solid #eee;
+        width: 220px;
+        background: #eeeeee;
+      }
+    }
+
+    li:hover a {
+      background: #eeeeee;
+    }
+
+    ul li ul {
+      left: 100%;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      z-index: 10;
+
+      li a {
+        background: #dddddd;
+        border-top: 1px solid #fff;
+      }
+
+      li:hover a {
+        background: #dddddd;
+      }
+
+      li ul li:hover a {
+        background: #cccccc;
+      }
+    }  
+  }
+}

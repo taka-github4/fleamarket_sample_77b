@@ -8,18 +8,32 @@
         .headerUpper__btn
           =image_tag 'icon/icon-search1.png',alt:"icon-search",class:"headerUpper__btnicon"
     .headerUnder
-      %ul.headerUnder__leftList
-        %li.headerUnder__leftList--start カテゴリー
-        %li.headerUnder__leftList--next ブランド
+      %ul.headerCategory
+        %li
+          =link_to "カテゴリーから探す", categories_path
+          %ul
+            - @parents.each do |parent|
+              %li
+                = link_to "#{parent.name}", category_path(parent)
+                %ul
+                  - parent.children.each do |child|
+                    %li
+                      = link_to "#{child.name}", category_path(child)
+                      %ul
+                        - child.children.each do |grandchild|
+                          %li
+                            = link_to "#{grandchild.name}", category_path(grandchild)
+        .brand 
+          =link_to "ブランドから探す", "#"
       -if current_user
-        %ul.headerUnder__rightList
-          %li
+        %ul.userpage
+          %li.left 
             =link_to "マイページ","/users/show"
-          %li.headerUnder__rightList--next
+          %li.right
             =link_to "ログアウト",destroy_user_session_path, method: :delete
       -else
-        %ul.headerUnder__rightList
-          %li
+        %ul.userpage
+          %li.left
             =link_to "ログイン",new_user_session_path
-          %li.headerUnder__rightList--next
+          %li.right
             =link_to "新規会員登録",new_user_registration_path

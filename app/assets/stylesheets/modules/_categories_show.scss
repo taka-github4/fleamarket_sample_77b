@@ -1,5 +1,5 @@
 .categoryShow {
-  padding: 50px 200px 25px 200px;
+  padding: 30px 200px 25px 200px;
   background-color: #f8f8f8;
 
   .categoryNamelist {
@@ -21,18 +21,133 @@
     margin-bottom: 20px;
 
     .categoryItemlist {
-
       .name{
         font-size: 22.5px;
         font-weight: bold;
+        margin-bottom: 10px;
       }
     }
   }
 
-  .categoryItemtable {
-    width: 100%;
-    margin-bottom: 30px;
-    display: flex;
-    justify-content: center;
+  .productLists{
+
+    a{
+      color: black;
+    }
+
+    .productList{
+      margin-left: 50px;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      :hover img{
+        opacity: 0.5;
+      }
+      
+      .name {
+        font-size: 15px;
+      }
+
+      a {
+        margin-left: 10px;
+        margin-bottom: 10px;
+      }
+
+      .productList-img{
+        width: 220px;
+        height: 150px;
+        position: relative;
+        overflow: hidden;
+        margin: 0;
+        z-index: auto;
+        img{
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          width: 100%;
+          z-index: auto;
+          height: 150px;
+          object-fit: cover;
+        }
+        
+        .product_buy{
+          color: red;
+          font-size: 20px;
+          position: absolute;
+          z-index: auto;
+          top: 45px;
+          left: auto;
+          padding: 15px 30px 0;
+          font-weight: bold;
+        }
+      }
+    }
+    .productList-body{
+      background-color: #ffffff;
+      width: 220px;
+      padding: 15px;
+      .details{
+        font-size: 13px;
+        ul{
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          li{
+            display: flex;
+            .icon{
+              position: relative;
+              top: 2px;
+              left: 0px;
+              right: 2px;
+            }
+            .like{
+              margin-left: 3px;
+            }
+          }
+        }
+        h4{
+          font-size: 9px;
+        }
+      }
+    }
+  }
+  .pagination {
+    text-align: center;
+    margin:0 auto;
+    margin-top: 30px;
+    font-size: 18px;
+
+    .page {
+      margin: 0 5px;
+      a {
+        color: #7a7a7a;
+      }
+    }
+
+    .page.current {
+      color: #ea352e;
+    }
+
+    .first {
+      font-size: 15px;
+    }
+
+    .prev {
+      font-size: 15px;
+      margin-left: 10px;
+      margin-right: 5px;
+    }
+
+    .next {
+      font-size: 15px;
+      margin-left: 5px;
+      margin-right: 10px;
+    }
+
+    .last {
+      font-size: 15px;
+    }
   }
 }

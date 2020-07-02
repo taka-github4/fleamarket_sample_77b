@@ -6,10 +6,15 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all.includes(:photos).order('created_at DESC').limit(4)
+    @parents = Category.where(ancestry: nil)
   end
 
   def show
     @item = Item.find(params[:id])
+    @parents = Category.where(ancestry: nil)
+    @category = Category.find(@item.category_id)
+    @items = @category.set_items
+    @items = @items.order("created_at DESC").limit(6)
   end
 
   def new

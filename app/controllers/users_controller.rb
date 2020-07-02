@@ -5,7 +5,9 @@ class UsersController < ApplicationController
     redirect_to root_url
   end
   def show
+    @parents = Category.where(ancestry: nil)
   end
   def logout
+    @parents = Category.where(ancestry: nil)
   end
 end
