@@ -23,6 +23,7 @@ class CreditCardsController < ApplicationController
         
         redirect_to action: "show"
       else
+        flash[:notice]=@card.errors.full_messages
         redirect_to action: "new"
       end
     end
