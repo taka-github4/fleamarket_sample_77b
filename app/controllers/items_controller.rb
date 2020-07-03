@@ -4,6 +4,7 @@ class ItemsController < ApplicationController
   before_action :set_item,only:[:edit,:update,:destroy]
   before_action :not_useritem,only:[:edit,:update,:destroy]
   before_action :set_parents,except: :destroy
+  before_action :set_search, only:[:index, :show]
 
   def index
     @items = Item.all.includes(:photos).order('created_at DESC').limit(4)
@@ -81,6 +82,10 @@ class ItemsController < ApplicationController
   end
 
   private
+
+  def set_search
+    @search = Item.ransack(params[:q])
+  end
 
   def item_params
     params.require(:item).permit(:name,  :price, :size_id, :category_id,:description, :item_condition_id, :burden_id, :prefectures_id, :days_id, :brand,  photos_attributes: [:image, :_destroy, :id]).merge(user_id: current_user.id)

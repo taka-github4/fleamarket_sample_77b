@@ -3,26 +3,28 @@
     .headerUpper
       =link_to root_url do
         =image_tag 'logo/logo.png',alt:"header-logo",class:"headerUpper__logo"
-      .headerUpper__form
-        %input.headerUpper__input{placeholder:"キーワードから探す"}
-        .headerUpper__btn
-          =image_tag 'icon/icon-search1.png',alt:"icon-search",class:"headerUpper__btnicon"
+      = search_form_for @search,url: searches_path do |f|
+        .headerUpper__form
+          = f.search_field :name_cont,{class:"headerUpper__input",placeholder:"キーワードから探す"}
+          = button_tag type:'submit',class:'headerUpper__btn' do
+            = image_tag"icon/icon-search1.png",class: 'headerUpper__btnicon'
     .headerUnder
       %ul.headerCategory
         %li
           =link_to "カテゴリーから探す", categories_path
           %ul
-            - @parents.each do |parent|
-              %li
-                = link_to "#{parent.name}", category_path(parent)
-                %ul
-                  - parent.children.each do |child|
-                    %li
-                      = link_to "#{child.name}", category_path(child)
-                      %ul
-                        - child.children.each do |grandchild|
-                          %li
-                            = link_to "#{grandchild.name}", category_path(grandchild)
+            - if @parents
+              - @parents.each do |parent|
+                %li
+                  = link_to "#{parent.name}", category_path(parent)
+                  %ul
+                    - parent.children.each do |child|
+                      %li
+                        = link_to "#{child.name}", category_path(child)
+                        %ul
+                          - child.children.each do |grandchild|
+                            %li
+                              = link_to "#{grandchild.name}", category_path(grandchild)
         .brand 
           =link_to "ブランドから探す", "#"
       -if current_user
@@ -35,5 +37,7 @@
         %ul.userpage
           %li.left
             =link_to "ログイン",new_user_session_path
+          -# %li.headerUnder__rightList--next
+          -#   =link_to "新規会員登録",new_user_registration_path
           %li.right
             =link_to "新規会員登録",new_user_registration_path

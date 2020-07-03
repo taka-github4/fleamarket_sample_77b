@@ -1,0 +1,11 @@
+=link_to item_path(item) do
+  .result__item
+    .result__itemImage
+      -if item.photos.first
+        =image_tag item.photos.first.image.url
+      -if item.purchaser_id
+        %label.product_buy SOLD OUT
+    .result__itemInfo
+      =item.name
+    .result__itemPrice
+      ="#{item.price}円"

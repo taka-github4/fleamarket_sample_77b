@@ -1,6 +1,7 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: :show
   before_action :set_parents, only: [:index,:show]
+  before_action :set_search
 
   def index
   end
@@ -21,5 +22,9 @@ private
   end
   def set_parents
     @parents = Category.where(ancestry: nil)
+  end
+
+  def set_search
+    @search = Item.ransack(params[:q])
   end
 end

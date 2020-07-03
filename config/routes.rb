@@ -33,4 +33,5 @@ Rails.application.routes.draw do
   end
   resources :buys, only: :index
   resources :categories
+  resources :searches,only:[:index]
 end

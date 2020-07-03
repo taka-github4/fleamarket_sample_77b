@@ -18,6 +18,7 @@ class Item < ApplicationRecord
     Item.where("id > ?",id).order("id ASC").first
   end
 
+
   def set_items
     if self.root?
       first_id = self.indirects.first.id

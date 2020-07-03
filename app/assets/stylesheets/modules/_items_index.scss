@@ -301,10 +301,10 @@ a{
     margin: 0 auto;
     width:100%;
     max-width: 1040px;
+    min-width: 600px;
     min-height: 82px;
     padding-top: 15px;
     padding-bottom: 6px
-  }
   }
   .headerUpper{
     display: flex;
@@ -314,7 +314,7 @@ a{
     }
     &__form{
       padding-top:5px;
-      width:100%;
+      width: 100%;
       display: flex;
     }
     &__input{
@@ -355,8 +355,8 @@ a{
       line-height: 45px;
 
       li.left a{
-       width: 70px;
-     }
+        width: 70px;
+      }
 
       li.right a{
         width: 85px;
@@ -364,7 +364,11 @@ a{
       }
     }
   }
-
+}
+.item_search{
+  width: 100%;
+  max-width: 900px;
+}
 .exhibitionBtn{
   position: fixed;
   bottom: 32px;
