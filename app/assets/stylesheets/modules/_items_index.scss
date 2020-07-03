@@ -231,6 +231,9 @@ a{
     }
     .productList{
       display: inline-flex;
+      :hover img{
+        opacity: 0.5;
+      }
       .productList-img{
         width: 220px;
         height: 150px;
@@ -248,9 +251,6 @@ a{
           z-index: auto;
           height: 150px;
           object-fit: cover;
-        }
-        img:hover{
-          opacity: 0.5;
         }
         .product_buy{
           color: red;
@@ -304,6 +304,7 @@ a{
     min-width: 600px;
     min-height: 82px;
     padding-top: 15px;
+    padding-bottom: 6px
   }
   .headerUpper{
     display: flex;
@@ -334,28 +335,32 @@ a{
     }
   }
   .headerUnder{
-    margin:3px 0 7px;
     font-size: 14px;
-    line-height: 38px;
+    width: 100%;
     display: flex;
     justify-content: space-between;
-    &__leftList{
-      display: flex;
-      color: #333;
-      &--start{
-        padding-right: 30px;
-      }
-      &--next{
-        padding-left: 16px;
-      }
+    position: relative;
+
+    .brand {
+      width: 120px;
+      position: absolute;
+      left: 180px;
+      top: 10px;
+      line-height: 26px;
     }
-    &__rightList{
-      a{
-        color: #333;
-      }
+    
+    .userpage {
       display: flex;
-      &--next{
-        padding-left: 16px;
+      flex-wrap: wrap;
+      line-height: 45px;
+
+      li.left a{
+        width: 70px;
+      }
+
+      li.right a{
+        width: 85px;
+        margin-left: 13.5px;
       }
     }
   }
