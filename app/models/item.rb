@@ -9,7 +9,7 @@ class Item < ApplicationRecord
   validates :name, length: { maximum: 40 }
   validates :description, length: { maximum: 1000 }
   validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999,message:"を300円から9999999円までの間で入力してください"}
-  validates :category_id, numericality: { greater_than_or_equal_to: 159, less_than_or_equal_to: 1000,message:"を入力してください"}
+  validates :category_id, numericality: { greater_than_or_equal_to: 159, less_than_or_equal_to: 1330,message:"を入力してください"}
   has_many :favorites, dependent: :destroy
   has_many :favorites, through: :favorites, source: :user
   def previous
@@ -18,5 +18,24 @@ class Item < ApplicationRecord
 
   def next
     Item.where("id > ?",id).order("id ASC").first
+  end
+
+
+  def set_items
+    if self.root?
+      first_id = self.indirects.first.id
+      last_id = self.indirects.last.id
+      items = Item.where(category_id: first_id..last_id)
+      return items
+
+    elsif self.has_children?
+      first_id = self.children.first.id
+      last_id = self.children.last.id
+      items = Item.where(category_id: first_id..last_id)
+      return items
+
+    else
+      return self.items
+    end
   end
 end

@@ -1,3 +1,7 @@
+- breadcrumb :itemparents
+- breadcrumb :itemchildren
+- breadcrumb :itemgrandchildren
+= render "layouts/breadcrumbs"
 .itemMain
   .itemContent
     .itemContent-top
@@ -106,57 +110,8 @@
               後ろの商品
               %i.fa.fa-angle-right
     .itemContent-bottom__related
-      = link_to 'レディースをもっと見る', "#"
-    .itemContent-bottom__items
-      .itemContent-bottom__items--list
-        = link_to "#" do
-          %figure.img
-            = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png"
-          .body
-            %h3.name お魚
-            .details
-              %ul
-                %li 3891円
-                %li
-                  %i.fa.fa-star.likeIcon
-                  200
-              %p (税込)
-      .itemContent-bottom__items--list
-        = link_to "#" do
-          %figure.img
-            = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/17/IMG_9069.JPG"
-          .body
-            %h3.name お肉
-            .details
-              %ul
-                %li 31円
-                %li
-                  %i.fa.fa-star.likeIcon
-                  3
-              %p (税込)      
-      .itemContent-bottom__items--list
-        = link_to "#" do
-          %figure.img
-            = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/11/a005.png"
-          .body
-            %h3.name 野菜
-            .details
-              %ul
-                %li 4423円
-                %li
-                  %i.fa.fa-star.likeIcon
-                  2
-              %p (税込)
-      .itemContent-bottom__items--list
-        = link_to "#" do
-          %figure.img
-            = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/13/a007.png"
-          .body
-            %h3.name かにみそ
-            .details
-              %ul
-                %li 1000円
-                %li
-                  %i.fa.fa-star.likeIcon
-                  0
-              %p (税込)
+      .categoryName
+        = link_to "#{@item.category.parent.parent.name}をもっと見る", category_path(@item.category.parent.parent)
+      - if @items
+        %ul.lists
+          = render "layouts/items-contents", items: @items

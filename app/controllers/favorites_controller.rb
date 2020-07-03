@@ -1,6 +1,6 @@
 class FavoritesController < ApplicationController
   before_action :set_item, only: [:create, :destroy]
-
+  before_action :set_search, only: [:index]
   def index
     @favorites = Favorite.where(user_id:current_user.id)
     
@@ -19,6 +19,9 @@ class FavoritesController < ApplicationController
   private
   def set_item
     @item = Item.find(params[:item_id])
+  end
+  def set_search
+    @search = Item.ransack(params[:q])
   end
 end
 

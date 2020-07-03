@@ -1,13 +1,14 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: :show
+  before_action :set_parents, only: [:index,:show]
+  before_action :set_search
 
   def index
-    @parents = Category.where(ancestry: nil)
   end
 
   def show
     @items = @category.set_items
-    @items = @items.where(purchaser_id: nil).order("created_at DESC")
+    @items = @items.order("created_at DESC").page(params[:page]).per(8)
   end
 
 private
@@ -18,5 +19,12 @@ private
     else
       @categorylists = @category.siblings
     end
+  end
+  def set_parents
+    @parents = Category.where(ancestry: nil)
+  end
+
+  def set_search
+    @search = Item.ransack(params[:q])
   end
 end

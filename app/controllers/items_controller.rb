@@ -3,6 +3,8 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update,:destroy]
   before_action :set_item,only:[:edit,:update,:destroy]
   before_action :not_useritem,only:[:edit,:update,:destroy]
+  before_action :set_parents,except: :destroy
+  before_action :set_search, only:[:index, :show]
 
   def index
     @items = Item.all.includes(:photos).order('created_at DESC').limit(4)
@@ -10,12 +12,14 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    @category = @item.category
+    @items = @category.set_items
+    @items = @items.order("created_at DESC").limit(6)
   end
 
   def new
     @item = Item.new
     @item.photos.new
-    @parents = Category.where(ancestry: nil)
   end
 
   def create
@@ -25,7 +29,6 @@ class ItemsController < ApplicationController
       redirect_to root_path
     else
       @item.photos.new
-      @parents = Category.where(ancestry: nil)
       flash.now[:alert] = @item.errors.full_messages
       render :new
     end
@@ -35,7 +38,6 @@ class ItemsController < ApplicationController
     @item.photos.new
     @parent = @item.category.parent.parent_id
     @child = @item.category.parent_id
-    @parents = Category.where(ancestry: nil)
     @children = Category.where(ancestry: "#{@parent}")
     @grandchildren = Category.where(ancestry: "#{@parent}/#{@child}")
   end
@@ -50,7 +52,6 @@ class ItemsController < ApplicationController
       @item.photos.new
       @parent = @item.category.parent.parent_id
       @child = @item.category.parent_id
-      @parents = Category.where(ancestry: nil)
       @children = Category.where(ancestry: "#{@parent}")
       @grandchildren = Category.where(ancestry: "#{@parent}/#{@child}")
       render :new
@@ -82,6 +83,10 @@ class ItemsController < ApplicationController
 
   private
 
+  def set_search
+    @search = Item.ransack(params[:q])
+  end
+
   def item_params
     params.require(:item).permit(:name,  :price, :size_id, :category_id,:description, :item_condition_id, :burden_id, :prefectures_id, :days_id, :brand,  photos_attributes: [:image, :_destroy, :id]).merge(user_id: current_user.id)
   end
@@ -95,5 +100,10 @@ class ItemsController < ApplicationController
       redirect_to root_url
     end
   end
+
+  def set_parents
+    @parents = Category.where(ancestry: nil)
+  end
+
 end
 
