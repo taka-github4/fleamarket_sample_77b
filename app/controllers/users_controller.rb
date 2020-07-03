@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only: [:show, :logout]
+  before_action :authenticate_user!, only: [:show, :logout, :favorite]
 
   def index
     redirect_to root_url
@@ -9,3 +9,4 @@ class UsersController < ApplicationController
   def logout
   end
 end
+

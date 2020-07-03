@@ -14,7 +14,7 @@
       -if current_user
         %ul.headerUnder__rightList
           %li
-            =link_to "マイページ","/users/show"
+            =link_to "マイページ","/users/#{current_user.id }"
           %li.headerUnder__rightList--next
             =link_to "ログアウト",destroy_user_session_path, method: :delete
       -else

@@ -15,7 +15,8 @@
                   円
                 %li
                   = icon('fas', 'star', class: 'icon')
-                  .like 0
+                  .like 
+                    = Favorite.where(item_id: item.id).count
               %h4 (税込)
       -else
         =link_to item_path(item) do

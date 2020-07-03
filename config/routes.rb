@@ -17,7 +17,9 @@ Rails.application.routes.draw do
       get 'children', defaults: { format: 'json' }
       get 'grandchildren', defaults: { format: 'json' }
     end
+    resources :favorites , only: [:create, :destroy]
   end
+  resources :favorites , only:[:index]
   resources :purchase, only: [:show] do
     member do
       post 'pay', to: 'purchase#pay'
@@ -31,6 +33,5 @@ Rails.application.routes.draw do
       post 'delete', to: 'credit_cards#delete'
     end
   end
-  resources :buys, only: :index
   resources :categories
 end

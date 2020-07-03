@@ -1,0 +1,21 @@
+.favo
+  .favo__title
+    お気に入り一覧
+  .favo__content
+    - if @favorites.present?
+      %ul
+        - @favorites.each do |favorite|
+          %li
+            = link_to item_path(favorite.item.id) do
+              .favo__content-image
+                = image_tag (favorite.item.photos.first.image.url)
+              .favo__content-name
+                = favorite.item.name
+              .favo__content-price
+                = "￥#{favorite.item.price}"
+                %br
+                  %h2
+                    (税込み)
+    - else
+      %h1
+        お気に入りに追加した商品はありません
