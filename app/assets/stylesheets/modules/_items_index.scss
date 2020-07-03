@@ -301,6 +301,7 @@ a{
     margin: 0 auto;
     width:100%;
     max-width: 1040px;
+    min-width: 600px;
     min-height: 82px;
     padding-top: 15px;
   }
@@ -312,7 +313,7 @@ a{
     }
     &__form{
       padding-top:5px;
-      width:100%;
+      width: 100%;
       display: flex;
     }
     &__input{
@@ -358,6 +359,10 @@ a{
       }
     }
   }
+}
+.item_search{
+  width: 100%;
+  max-width: 900px;
 }
 .exhibitionBtn{
   position: fixed;

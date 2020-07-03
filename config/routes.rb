@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'searches/index'
   devise_for :users, controllers: {
     registrations: 'users/registrations',
   }
@@ -33,4 +34,5 @@ Rails.application.routes.draw do
   end
   resources :buys, only: :index
   resources :categories
+  resources :searches,only:[:index]
 end
