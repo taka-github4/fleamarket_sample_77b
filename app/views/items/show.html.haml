@@ -80,7 +80,7 @@
         .itemContent-top__item--option
           %ul
             %ul#favoriteBtn
-              = render partial: 'favorites/favorite', locals: { item: @item}
+              = render partial: 'favorites/favorite', locals: { item: @item }
           %ul.report
             %li.reportBtn
               = link_to "#" do
@@ -95,14 +95,21 @@
               商品を削除する
       .itemContent-top__comment
         .comments
-          %h4 ＜コメント一覧＞
           - if @comments
             - @comments.each do |comment|
-              .comments__comment
-                .comments__nickname
-                  = comment.user.nickname
-                ：
-                = comment.comment
+              .commentarea
+                .nickname
+                  -if @item.user_id == comment.user.id 
+                    = comment.user.nickname
+                    .exhibitor
+                      出品者
+                  - else
+                    = comment.user.nickname
+                .text
+                  = simple_format(comment.comment)
+                  .time
+                    %i.fa.fa-history{"aria-hidden" => "true"}
+                    %time(datetime="#{comment.created_at}")= time_ago_in_words(comment.created_at)
         - if current_user
           = form_with(model: [@item, @comment], local: true) do |form|
             = form.text_area :comment, class: "textarea"
@@ -111,8 +118,7 @@
               %i.fa.fa-comment
               コメントする
         - else
-          %strong
-            %p ※※※ コメントの投稿には新規登録/ログインが必要です ※※※
+          %p.notice コメントの投稿には新規登録/ログインが必要です
     .itemContent-bottom
       %ul.itemContent-bottom__link
         %li.itemContent-bottom__link--left
