@@ -1,29 +1,62 @@
 .favo{
+  background-color: #f5f5f5;
   .favo__title{
+    background-color: #FFF;
     text-align: center;
     font-size: 20px;
     line-height: 1.4;
     font-weight: bold;
   }
-  background-color: #FFF;
+  
   .favo__content{
-    ul{
-      display:flex;
-      li{
+    margin: 20px;
+    display:flex;
         .favo__content-image{
+          width: 160px;
+          height: 140px;
+          display: flex;
+          align-items: center;
+          overflow: hidden;
+          position:relative;
           img{
-            width: 200px;
-            height: 200px;
+            width: 160px;
+            min-width: 100%;
+            min-height: 100%;
           }
         }
-        .favo__content-name{
+        .product_buys{
+          width: 80px;
+          position: absolute;
+          text-align: center;
+          top: 60px;
+          left: 20px;
+          width: 120px;
+          font-weight: bold;
+          color: red;
+          background-color: rgba(255,255,255, .6);
+          border-radius: 4px;
         }
-        h2{
-          font-size: 12px;
+        .favo__content__info{
+          width: 160px;
+          height: 60px;
+          padding: 10px;
+          background-color: #fff;
+          .favo__content__info-name{
+            width: 140px;
+            height: 40px;
+            font-size: 14px;
+            line-height: 20px;
+            word-break: break-all;
+            overflow: hidden;
+          }
         }
-      }
-      
-    }
+        .favo__content__info-price{
+          position:absolute;
+          padding: 0 6px 0 4px;
+          border-radius: 0 4px 4px 0;
+          top:270px;
+          background-color: rgba(255,255,255, .6);
+        }
     
   }
 }
