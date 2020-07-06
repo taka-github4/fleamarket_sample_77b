@@ -80,7 +80,7 @@
         .itemContent-top__item--option
           %ul
             %ul#favoriteBtn
-              -# = render partial: 'favorites/favorite', locals: { item: @item }
+              = render partial: 'favorites/favorite', locals: { item: @item }
           %ul.report
             %li.reportBtn
               = link_to "#" do
