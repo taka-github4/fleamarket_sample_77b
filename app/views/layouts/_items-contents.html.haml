@@ -5,7 +5,7 @@
         .productList-img
           =image_tag item.photos.first.image.url
           -if item.purchaser_id
-            %label.product_buy SOLD OUT
+            %label.product_buy 売り切れました
         .productList-body
           .name
             = item.name
