@@ -9,9 +9,12 @@
         %h2.itemContent-top__item--name
           = @item.name
         .itemContent-top__item--photo
+          -if @item.purchaser_id
+            %label.product_buy 売り切れました
           %ul
             %li
-              = image_tag @item.photos.first.image.url
+              -if @item.photos.first
+                =image_tag @item.photos.first.image.url
               %ul
                 %div.imagebox
                   - @item.photos.each do |photo|
@@ -92,12 +95,25 @@
             .deletebutton
               商品を削除する
       .itemContent-top__comment
-        = form_with url: "#" do |form|
-          = form.text_area :kari , class: "textarea"
-          %p.notice 相手のことを考え丁寧なコメントを心がけましょう。</br> 不快な言葉遣いなどは利用制限や退会処分となることがあります。
-          = button_tag type: 'submit', class: "btn" do
-            %i.fa.fa-comment
-            コメントする
+        .comments
+          %h4 ＜コメント一覧＞
+          - if @comments
+            - @comments.each do |comment|
+              .comments__comment
+                .comments__nickname
+                  = comment.user.nickname
+                ：
+                = comment.comment
+        - if current_user
+          = form_with(model: [@item, @comment], local: true) do |form|
+            = form.text_area :comment, class: "textarea"
+            %p.notice 相手のことを考え丁寧なコメントを心がけましょう。</br> 不快な言葉遣いなどは利用制限や退会処分となることがあります。
+            = button_tag type: 'submit', class: "btn" do
+              %i.fa.fa-comment
+              コメントする
+        - else
+          %strong
+            %p ※※※ コメントの投稿には新規登録/ログインが必要です ※※※
     .itemContent-bottom
       %ul.itemContent-bottom__link
         %li.itemContent-bottom__link--left
