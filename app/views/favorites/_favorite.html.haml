@@ -1,14 +1,15 @@
-- if Favorite.find_by(user_id: current_user.id, item_id: item.id)
+- if current_user && Favorite.find_by(user_id: current_user.id, item_id: item.id)
   = link_to(item_favorite_path(@item, item.id), method: :delete, remote: true) do
     %li.likebtn
       お気に入り済み！
       = icon('fa', 'star')
       = Favorite.where(item_id: item.id).count
       
--else 
-  = link_to(item_favorites_path(@item), method: :post, remote: true) do
-    %li.likebtn
-      お気に入り登録！
-      = icon('fa', 'star')
-      = Favorite.where(item_id: item.id).count
-      
+-else
+  -if current_user
+    = link_to(item_favorites_path(@item), method: :post, remote: true) do
+      %li.likebtn
+        お気に入り登録！
+        = icon('fa', 'star')
+        = Favorite.where(item_id: item.id).count
+        
