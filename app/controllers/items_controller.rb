@@ -15,6 +15,8 @@ class ItemsController < ApplicationController
     @category = @item.category
     @items = @category.set_items
     @items = @items.order("created_at DESC").limit(6)
+    @comment = Comment.new
+    @comments = @item.comments.includes(:user)
   end
 
   def new

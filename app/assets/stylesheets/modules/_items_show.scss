@@ -26,6 +26,17 @@
 
         &--photo {
           margin: 16px 0 0;
+          position: relative;
+          .product_buy{
+            color: red;
+            font-size: 40px;
+            position: absolute;
+            z-index: auto;
+            top: 45px;
+            left: auto;
+            padding: 100px 160px 0;
+            font-weight: bold;
+          }
         }
 
         &--photo ul {
@@ -375,5 +386,17 @@
         }
       }
     }
+  }
+}
+.comments{
+  width:100%;
+  margin-bottom:20px;
+  background-color:white;
+  &__comment{
+    text-align:left;
+  }
+  &__nickname{
+    color:#3ccace;
+    display:inline-block;
   }
 }

@@ -1,8 +1,8 @@
 class Item < ApplicationRecord
   belongs_to :user
+  has_many :comments
   belongs_to :category
   has_many :photos, dependent: :destroy
-  belongs_to :user
   validates :photos, presence: true, allow_nil: true
   accepts_nested_attributes_for :photos, allow_destroy: true
   validates :name, :description, :item_condition_id, :burden_id, :prefectures_id,:days_id,:category_id,presence: true
