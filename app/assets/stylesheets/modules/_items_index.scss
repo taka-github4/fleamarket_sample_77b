@@ -231,6 +231,13 @@ a{
     }
     .productList{
       display: inline-flex;
+      i{
+        color: #3CCACE;
+      }
+      .like{
+        color: #3CCACE;
+      }
+      
       :hover img{
         opacity: 0.5;
       }
@@ -299,9 +306,7 @@ a{
   padding: 0 60px;
   &__contents{
     margin: 0 auto;
-    width:100%;
-    max-width: 1040px;
-    min-width: 600px;
+    width:1040px;
     min-height: 82px;
     padding-top: 15px;
     padding-bottom: 6px

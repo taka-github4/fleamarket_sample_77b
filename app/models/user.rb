@@ -11,4 +11,6 @@ class User < ApplicationRecord
   has_many :items, dependent: :destroy
   has_one :credit_card, dependent: :destroy
   has_many :comments
+  has_many :favorites, dependent: :destroy
+  has_many :favorites,through: :favorites, source: :item
 end

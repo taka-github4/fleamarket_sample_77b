@@ -11,12 +11,12 @@
           出品する
     .userContent
       .userContent__bought
-        = link_to '#' do
+        = link_to  do
           購入した商品
     .userContent
       .userContent__like
-        = link_to '#' do
-          いいね！一覧
+        = link_to favorites_url  do
+          お気に入り！一覧
     .userContent
       .userContent__card
         = link_to new_credit_card_path do
