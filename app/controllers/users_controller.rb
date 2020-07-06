@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   end
   def logout
   end
-
+  
   private
 
   def set_search
