@@ -5,16 +5,17 @@
     - if @favorites.present?
       - @favorites.each do |favorite|
         = link_to item_path(favorite.item.id) do
-          .favo__content-image
-            = image_tag (favorite.item.photos.first.image.url)
-            -if favorite.item.purchaser_id
-              .product_buys
-                売り切れました
-          .favo__content__info
-            .favo__content__info-name
-              = favorite.item.name
-          .favo__content__info-price
-            = "￥#{favorite.item.price}"
+          .favo__content-box
+            .favo__content-image
+              = image_tag (favorite.item.photos.first.image.url)
+              -if favorite.item.purchaser_id
+                .product_buys
+                  売り切れました
+            .favo__content__info
+              .favo__content__info-name
+                = favorite.item.name
+            .favo__content__info-price
+              = "￥#{favorite.item.price}"
                   
     - else
       %h1

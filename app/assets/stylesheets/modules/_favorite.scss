@@ -9,55 +9,57 @@
   }
   
   .favo__content{
-    margin: 20px;
+    padding: 20px;
     display:flex;
-        .favo__content-image{
+    .favo__content-box{
+      padding: 10px;
+      .favo__content-image{
+        width: 160px;
+        height: 140px;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        position:relative;
+        img{
           width: 160px;
-          height: 140px;
-          display: flex;
-          align-items: center;
+          min-width: 100%;
+          min-height: 100%;
+        }
+      }
+      .product_buys{
+        width: 80px;
+        position: absolute;
+        text-align: center;
+        top: 60px;
+        left: 20px;
+        width: 120px;
+        font-weight: bold;
+        color: red;
+        background-color: rgba(255,255,255, .6);
+        border-radius: 4px;
+      }
+      .favo__content__info{
+        width: 160px;
+        height: 60px;
+        padding: 10px;
+        background-color: #fff;
+        .favo__content__info-name{
+          width: 140px;
+          height: 40px;
+          font-size: 14px;
+          line-height: 20px;
+          word-break: break-all;
           overflow: hidden;
-          position:relative;
-          img{
-            width: 160px;
-            min-width: 100%;
-            min-height: 100%;
-          }
         }
-        .product_buys{
-          width: 80px;
-          position: absolute;
-          text-align: center;
-          top: 60px;
-          left: 20px;
-          width: 120px;
-          font-weight: bold;
-          color: red;
-          background-color: rgba(255,255,255, .6);
-          border-radius: 4px;
-        }
-        .favo__content__info{
-          width: 160px;
-          height: 60px;
-          padding: 10px;
-          background-color: #fff;
-          .favo__content__info-name{
-            width: 140px;
-            height: 40px;
-            font-size: 14px;
-            line-height: 20px;
-            word-break: break-all;
-            overflow: hidden;
-          }
-        }
-        .favo__content__info-price{
-          position:absolute;
-          padding: 0 6px 0 4px;
-          border-radius: 0 4px 4px 0;
-          top:270px;
-          background-color: rgba(255,255,255, .6);
-        }
-    
+      }
+      .favo__content__info-price{
+        position:absolute;
+        padding: 0 6px 0 4px;
+        border-radius: 0 4px 4px 0;
+        top:270px;
+        background-color: rgba(255,255,255, .6);
+      }
+    }
   }
 }
 
