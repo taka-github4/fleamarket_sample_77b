@@ -1,1 +1,6 @@
+<% if @f_error %>
+$('#favoriteBtn').children().remove();
+$('#favoriteBtn').append("<%= @f_error %>")
+<% else %>
 $('#favoriteBtn').html("<%= j(render partial: 'favorites/favorite', locals: { item: @item}) %>");
+<% end %>
