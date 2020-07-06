@@ -29,13 +29,72 @@
     color: #333;
     }
   }
-  input{
-    width: 100%;
-    height:40px;
-    padding-left: 8px;
+  &__field{
+    input{
+        width: 100%;
+        height:40px;
+        padding-left: 8px;
+    }
   }
+  &__select{
+    select{
+      width: 100%;
+      height:40px;
+      padding-left: 8px;
+    }
+  }
+  &__money{
+    margin-top: 4px;
+    input{
+      width: 90px;
+      height:40px;
+      font-size: 14px;
+      padding-left: 8px;
+    }
+    p{
+      width:11px;
+      font-size: 10px;
+      line-height: 40px;
+      display: inline-block;
+    }
+  }
+  &__checkBoxes{
+    width:100%;
+    input{
+      width:14px;
+      height:14px;
+      margin-top: 10px;
+      display: inline-block;
+    }
+    label{
+      height:16px;
+      width: 86px;
+      padding-left: 2px;
+      font-size: 16px;
+      display: inline-block;
+    }
+  }
+
+  &__longLabelCheckBoxes{
+    width:100%;
+    input{
+      width:14px;
+      height:14px;
+      margin-top: 10px;
+      display: inline-block;
+    }
+    label{
+      height:16px;
+      width: 186px;
+      padding-left: 2px;
+      font-size: 16px;
+      display: inline-block;
+    }
+  }
+
   &__btn{
-    margin: 30px auto;
+    margin: 20px 0;
+    width:200px;
     height:40px;
     font-size: 18px;
     font-weight: bold;
@@ -44,8 +103,17 @@
     border-radius: 4px;
     text-align: center;
     color: #fff;
-    cursor: pointer;
   }
+
+  #search__category{
+    select{
+    width: 100%;
+    height:40px;
+    padding-left: 8px;
+    margin-bottom: 4px;
+    }
+  }
+
 }
 .result{
   width: 100%;
@@ -81,17 +149,38 @@
     display: flex;
     align-items: center;
     overflow: hidden;
+    position:relative;
     img{
       width: 160px;
-      height: auto;
       min-width: 100%;
       min-height: 100%;
     }
+  }
+  &__itemSoldout{
+    width: 80px;
+    position: absolute;
+    text-align: center;
+    top: 60px;
+    left: 20px;
+    width: 120px;
+    font-weight: bold;
+    color: red;
+    background-color: rgba(255,255,255, .6);
+    border-radius: 4px;
   }
   &__itemInfo{
     width: 160px;
     height: 60px;
     padding: 10px;
+
+  }
+  &__itemInfoText{
+    width: 140px;
+    height: 40px;
+    font-size: 14px;
+    line-height: 20px;
+    word-break: break-all;
+    overflow: hidden;
   }
   &__itemPrice{
     position:absolute;

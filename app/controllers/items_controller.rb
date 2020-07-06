@@ -81,6 +81,15 @@ class ItemsController < ApplicationController
     end
   end
 
+
+  def grandchildrenancestry
+    respond_to do |format|
+      format.json do
+        @grandchildren = Category.where(ancestry: params[:ancestry])
+      end
+    end
+  end
+
   private
 
   def set_search
