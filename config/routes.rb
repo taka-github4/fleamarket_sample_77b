@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     collection do
       get 'children', defaults: { format: 'json' }
       get 'grandchildren', defaults: { format: 'json' }
+      get 'grandchildrenancestry', defaults: { format: 'json' }
     end
   end
   resources :purchase, only: [:show] do

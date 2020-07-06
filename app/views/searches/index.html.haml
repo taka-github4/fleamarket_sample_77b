@@ -5,29 +5,75 @@
         = search_form_for(@search,url: searches_path) do |f|
           .search__statem
             =icon("fas", "plus",class:"search__statem--icon")
-            キーワード
-          = f.search_field :name_cont, placeholder: "例）値下げ", class: "input"
+            商品名、説明文を検索
+          .search__field
+            = f.search_field :name_or_description_cont, placeholder: "キーワードを入力"
           .search__statem
             =icon("fas", "list",class:"search__statem--icon")
-            カテゴリを選択する
-          %input
+            カテゴリーを選択する
+          #search__category
+            = f.collection_select :category_ancestry_start, @searchParents,:id ,:name,{include_blank: "選択してください"}
+          .search__statem
+            =icon("fas", "ruler",class:"search__statem--icon")
+            サイズで絞り込む
+          .search__checkBoxes
+            = f.collection_check_boxes(:size_id_eq_any, Size.all,:id, :name)
           .search__statem
             =icon("fas", "tags",class:"search__statem--icon")
-            ブランドを選択する
-          %input
+            ブランドで検索する
+          .search__field
+            = f.search_field :brand_cont, placeholder: "例）エルメス"
+          .search__statem
+            =icon("fas", "star",class:"search__statem--icon")
+            商品の状態で絞り込む
+          .search__longLabelCheckBoxes
+            = f.collection_check_boxes(:item_condition_id_eq_any, ItemCondition.all,:id, :name)
+          .search__statem
+            =icon("fas", "truck",class:"search__statem--icon")
+            配送料の負担で絞り込む
+          .search__select
+            = f.collection_select(:burden_id_eq_any,Burden.all, :id, :name,{include_blank: "選択してください"})
+          .search__statem
+            =icon("fas", "calendar-alt",class:"search__statem--icon")
+            発送までの日数で絞り込む
+          .search__longLabelCheckBoxes
+            = f.collection_check_boxes(:days_id_eq_any, Days.all,:id, :name)
+          .search__statem
+            =icon("fas", "map-marked",class:"search__statem--icon")
+            発送元の地域で絞り込む
+          .search__select
+            =f.collection_select(:prefectures_id_eq_any, Prefecture.all, :id, :name,{include_blank: "選択してください"})
           .search__statem
             =icon("fas", "coins",class:"search__statem--icon")
-            価格
-          = f.search_field :price_lteq, placeholder: "¥9,999,999まで"
+            価格で絞り込む
+          .search__select
+            = select_tag :price_range, options_from_collection_for_select(PriceRange.all, :id, :name),{prompt: "選択してください"}
+          .search__money
+            = f.search_field :price_gteq, placeholder: "¥ Min",maxlength:"7"
+            %p 〜
+            = f.search_field :price_lteq, placeholder: "¥ Max",maxlength:"7"
+          .search__statem
+            =icon("fas", "shopping-cart",class:"search__statem--icon")
+            販売状況
+          .search__select
+            = f.select( :purchaser_id_not_null,{ '選択してください': '', '販売中': '0', '売り切れ': '1'})
+          .search__statem
+            =icon("fas", "sort-amount-down",class:"search__statem--icon")
+            検索結果の並び替え
+          .search__select
+            = f.select( :sorts, { '出品の新しい順': 'updated_at desc','出品の古い順': 'updated_at asc', '価格の安い順': 'price asc', '価格の高い順': 'price desc'})
           = button_tag type:'submit',class:'search__btn' do
             検索する
     .searchContainar__right
       .result
         .result__title
           .result__title--content
-            = params[:q][:name_cont]
+            -if params[:q]
+              = "#{params[:q][:name_or_description_cont]}"
           .result__title--later
-            の検索結果
+            -if params[:q] && params[:q][:name_or_description_cont] != ""
+              の
+            検索結果
           .result__title--number
             ="#{@items.count}件表示"
         .result__items

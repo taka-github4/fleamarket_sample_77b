@@ -3,8 +3,6 @@ require 'rails_helper'
 RSpec.describe Address, type: :model do
 
   describe '#create' do
-  before do
-  end
     context 'Addressを保存できる場合' do
       it '全ての項目に記載があれば保存' do
         expect(build(:address)).to be_valid

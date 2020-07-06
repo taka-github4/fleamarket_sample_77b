@@ -5,7 +5,7 @@
         =image_tag 'logo/logo.png',alt:"header-logo",class:"headerUpper__logo"
       = search_form_for @search,url: searches_path do |f|
         .headerUpper__form
-          = f.search_field :name_cont,{class:"headerUpper__input",placeholder:"キーワードから探す"}
+          = f.search_field :name_or_description_cont,{class:"headerUpper__input",placeholder:"キーワードから探す"}
           = button_tag type:'submit',class:'headerUpper__btn' do
             = image_tag"icon/icon-search1.png",class: 'headerUpper__btnicon'
     .headerUnder
