@@ -1,4 +1,3 @@
-fork
 ## itemsテーブル
 
 |Column|Type|Options|
